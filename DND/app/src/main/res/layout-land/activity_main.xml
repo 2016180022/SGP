@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <kr.ac.tukorea.ge.n2016180022.dnd.UpperView
+    <kr.ac.tukorea.ge.n2016180022.dnd.framework.UpperView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.2"
         />
-    <kr.ac.tukorea.ge.n2016180022.dnd.LowerView
+    <kr.ac.tukorea.ge.n2016180022.dnd.framework.LowerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.8"
