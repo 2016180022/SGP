@@ -34,6 +34,10 @@ public class LowerView extends View {
     private Rect charSrcRect = new Rect();
     private Rect charDstRect = new Rect();
 
+    public final int CHARSTATE = 1;
+    public final int EQUSTATE = 2;
+    public int STATE;
+
     public LowerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView();
@@ -52,12 +56,15 @@ public class LowerView extends View {
         charGodsword = BitmapFactory.decodeResource(res, R.mipmap.godsword);
 
         charSrcRect.set(0, 0, charDarktemplar.getWidth(), charDarktemplar.getHeight());
+
+        STATE = CHARSTATE;
     }
 
 
     @Override
     protected void onDraw(Canvas canvas) {
         //super.onDraw(canvas);
+
         lowerDstRect.set(0, 0, canvas.getWidth(), canvas.getHeight());
         canvas.drawBitmap(bgLower, lowerSrcRect, lowerDstRect, null);
 

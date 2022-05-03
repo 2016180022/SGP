@@ -36,6 +36,9 @@ public class UpperView extends View {
     private Bitmap skillImage;
     private Rect skillSrcRect = new Rect();
     private Rect skillDstRect = new Rect();
+    private Bitmap itemImage;
+    private Rect itemSrcRect = new Rect();
+    private Rect itemDstRect = new Rect();
 
     public UpperView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -59,6 +62,9 @@ public class UpperView extends View {
 
         skillImage = BitmapFactory.decodeResource(res, R.mipmap.skill_1);
         skillSrcRect.set(0, 0, skillImage.getWidth(), skillImage.getHeight());
+
+        itemImage = BitmapFactory.decodeResource(res, R.mipmap.item_1);
+        itemSrcRect.set(0, 0, itemImage.getWidth(), itemImage.getHeight());
 
         STATE = CHARSTATE;
 
@@ -97,6 +103,11 @@ public class UpperView extends View {
         skillDstRect.set(canvas.getWidth() * 5 / 8, canvas.getHeight() / 5, canvas.getWidth() * 6 / 8, canvas.getHeight() / 5 + 150);
         canvas.drawBitmap(skillImage, skillSrcRect, skillDstRect, null);
         canvas.drawText("이보브", canvas.getWidth() * 5 / 8 + 50, canvas.getHeight() / 5 + 250, infoText);
+
+        itemDstRect.set(canvas.getWidth() * 5 / 8, canvas.getHeight() * 3 / 5, canvas.getWidth() * 6 / 8, canvas.getHeight() * 3 / 5 + 150);
+        canvas.drawBitmap(itemImage, itemSrcRect, itemDstRect, null);
+        canvas.drawText("부스팅 펄스 튜브", canvas.getWidth() * 5 / 8 - 50, canvas.getHeight() * 3 / 5 + 250, infoText);
+
     }
 
     private void drawEqu() {
