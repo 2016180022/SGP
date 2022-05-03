@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
@@ -27,6 +29,13 @@ public class UpperView extends View {
     public final int GAMESTATE = 1;
     public final int CHARSTATE = 2;
     public final int EQUSTATE = 3;
+    private Bitmap charImage;
+    private Rect charSrcRect = new Rect();
+    private Rect charDstRect = new Rect();
+    private Paint infoText = new Paint();
+    private Bitmap skillImage;
+    private Rect skillSrcRect = new Rect();
+    private Rect skillDstRect = new Rect();
 
     public UpperView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -42,7 +51,16 @@ public class UpperView extends View {
         gameTile = BitmapFactory.decodeResource(res, R.mipmap.tile_town1);
         tileSrcRect.set(0, 0, gameTile.getWidth(), gameTile.getHeight());
 
-        STATE = GAMESTATE;
+        charImage = BitmapFactory.decodeResource(res, R.mipmap.darktemplar);
+        charSrcRect.set(0, 0, charImage.getWidth(), charImage.getHeight());
+
+        infoText.setColor(Color.WHITE);
+        infoText.setTextSize(50);
+
+        skillImage = BitmapFactory.decodeResource(res, R.mipmap.skill_1);
+        skillSrcRect.set(0, 0, skillImage.getWidth(), skillImage.getHeight());
+
+        STATE = CHARSTATE;
 
     }
 
@@ -56,7 +74,7 @@ public class UpperView extends View {
                 drawGame(canvas);
                 break;
             case CHARSTATE:
-                drawChar();
+                drawChar(canvas);
                 break;
             case EQUSTATE:
                 drawEqu();
@@ -69,8 +87,16 @@ public class UpperView extends View {
         canvas.drawBitmap(gameTile, tileSrcRect, tileDstRect, null);
     }
 
-    private void drawChar() {
+    private void drawChar(Canvas canvas) {
+        charDstRect.set(canvas.getWidth() / 8, canvas.getHeight() / 6, canvas.getWidth() / 8 + 400, canvas.getHeight() / 6 + 300);
+        canvas.drawBitmap(charImage, charSrcRect, charDstRect, null);
 
+        canvas.drawText("다크템플러", canvas.getWidth() / 8 + 100, canvas.getHeight() * 2 / 3, infoText);
+        canvas.drawText("AD:190 AB:110 AS:020", canvas.getWidth() / 8 - 30, canvas.getHeight() * 7 / 8, infoText);
+
+        skillDstRect.set(canvas.getWidth() * 5 / 8, canvas.getHeight() / 5, canvas.getWidth() * 6 / 8, canvas.getHeight() / 5 + 150);
+        canvas.drawBitmap(skillImage, skillSrcRect, skillDstRect, null);
+        canvas.drawText("이보브", canvas.getWidth() * 5 / 8 + 50, canvas.getHeight() / 5 + 250, infoText);
     }
 
     private void drawEqu() {

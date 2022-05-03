@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnEqu;
     private Button btnQuit;
 
+    public int State;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,17 +34,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OnClick(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
         switch(view.getId())
         {
             case R.id.startButton:
+                intent.putExtra("actState", "GAME");
                 break;
             case R.id.charButton:
+                intent.putExtra("actState", "CHAR");
                 break;
             case R.id.equButton:
+                intent.putExtra("actState", "EQU");
                 break;
         }
-
-        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 
