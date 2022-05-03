@@ -27,7 +27,6 @@ public class LowerView extends View {
     private Bitmap bgLower;
     private Rect lowerSrcRect = new Rect();
     private Rect lowerDstRect = new Rect();
-    private ArrayList charList = new ArrayList();
     private Bitmap charDarktemplar;
     private Bitmap charDemonslayer;
     private Bitmap charGodsword;
@@ -37,6 +36,11 @@ public class LowerView extends View {
     public final int CHARSTATE = 1;
     public final int EQUSTATE = 2;
     public int STATE;
+    private Rect equDstRect = new Rect();
+    private Bitmap equ1;
+    private Bitmap equ2;
+    private Bitmap equ3;
+    private Rect equSrcRect = new Rect();
 
     public LowerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -47,15 +51,17 @@ public class LowerView extends View {
         bgLower = BitmapFactory.decodeResource(res, R.mipmap.background);
         lowerSrcRect.set(0, 0, bgLower.getWidth(), bgLower.getHeight());
 
-        charList.add("darktemplar");
-        charList.add("demonslayer");
-        charList.add("godsword");
-
         charDarktemplar = BitmapFactory.decodeResource(res, R.mipmap.darktemplar);
         charDemonslayer = BitmapFactory.decodeResource(res, R.mipmap.demonslayer);
         charGodsword = BitmapFactory.decodeResource(res, R.mipmap.godsword);
 
         charSrcRect.set(0, 0, charDarktemplar.getWidth(), charDarktemplar.getHeight());
+
+        equ1 = BitmapFactory.decodeResource(res, R.mipmap.item_1);
+        equ2 = BitmapFactory.decodeResource(res, R.mipmap.item_2);
+        equ3 = BitmapFactory.decodeResource(res, R.mipmap.item_3);
+
+        equSrcRect.set(0, 0, equ1.getWidth(), equ1.getHeight());
 
         STATE = CHARSTATE;
     }
@@ -65,10 +71,21 @@ public class LowerView extends View {
     protected void onDraw(Canvas canvas) {
         //super.onDraw(canvas);
 
-        lowerDstRect.set(0, 0, canvas.getWidth(), canvas.getHeight());
-        canvas.drawBitmap(bgLower, lowerSrcRect, lowerDstRect, null);
+        drawBackground(canvas);
 
-//        for (int i = 0; i < charList.size(); i++)
+        switch(STATE)
+        {
+            case CHARSTATE:
+                drawChar(canvas);
+                break;
+            case EQUSTATE:
+                drawEqu(canvas);
+                break;
+        }
+    }
+
+    private void drawChar(Canvas canvas) {
+        //        for (int i = 0; i < charList.size(); i++)
 //        {
 //            charDstRect.set(canvas.getWidth() / 10 * (i + 1), canvas.getHeight() / 5, canvas.getWidth() / 5 * (i + 1), canvas.getHeight() / 5);
 //            canvas.drawBitmap(charList.get(i), );
@@ -81,6 +98,21 @@ public class LowerView extends View {
 
         charDstRect.set(canvas.getWidth() / 10 + 400, canvas.getHeight() / 5, canvas.getWidth() / 5 + 400, canvas.getHeight() / 10 * 9);
         canvas.drawBitmap(charGodsword, charSrcRect, charDstRect, null);
+    }
 
+    private void drawEqu(Canvas canvas) {
+        equDstRect.set(canvas.getWidth() / 10, canvas.getHeight() / 5, canvas.getWidth() / 5, canvas.getHeight() / 10 * 9);
+        canvas.drawBitmap(equ1, equSrcRect, equDstRect, null);
+
+        equDstRect.set(canvas.getWidth() / 10 + 200, canvas.getHeight() / 5, canvas.getWidth() / 5 + 200, canvas.getHeight() / 10 * 9);
+        canvas.drawBitmap(equ2, equSrcRect, equDstRect, null);
+
+        equDstRect.set(canvas.getWidth() / 10 + 400, canvas.getHeight() / 5, canvas.getWidth() / 5 + 400, canvas.getHeight() / 10 * 9);
+        canvas.drawBitmap(equ3, equSrcRect, equDstRect, null);
+    }
+
+    private void drawBackground(Canvas canvas) {
+        lowerDstRect.set(0, 0, canvas.getWidth(), canvas.getHeight());
+        canvas.drawBitmap(bgLower, lowerSrcRect, lowerDstRect, null);
     }
 }

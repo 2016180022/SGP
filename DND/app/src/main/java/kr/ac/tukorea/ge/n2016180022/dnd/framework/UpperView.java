@@ -66,7 +66,7 @@ public class UpperView extends View {
         itemImage = BitmapFactory.decodeResource(res, R.mipmap.item_1);
         itemSrcRect.set(0, 0, itemImage.getWidth(), itemImage.getHeight());
 
-        STATE = CHARSTATE;
+        STATE = GAMESTATE;
 
     }
 
