@@ -54,16 +54,26 @@
 #### 1. 메인 화면
 ![메인 화면](https://github.com/2016180022/SGP/blob/master/dMain.png?raw=true)  
 게임 타이틀 이미지, 게임 시작 버튼, 캐릭터 정보 버튼, 장비 관리 버튼, 게임 종료 버튼
+**게임을 시작하면 가장 먼저 출력하는 초기 화면**
+* 해결해야 할 사항
+	Activity에서 Custum View 자체로 데이터를 넘겨주는 방법에 대하여 해결 필요
 
 #### 2. 게임 플레이 화면(2분할)
 ![플레이 화면](https://github.com/2016180022/SGP/blob/master/dPlay.png?raw=true)  
 화면 상단: 백그라운드 맵, 몬스터 객체, 플레이어 유닛 객체  
-화면 하단(좌우 스크롤): 캐릭터 리스트, 일시정지 버튼
+화면 하단(좌우 스크롤): 캐릭터 리스트, 일시정지 버튼  
+* 실제 구현 화면
+	![인게임 화면](https://raw.githubusercontent.com/2016180022/SGP/8ab98c1bebf19150f330a754c533ec6db49941e3/img/GAMESTATE.PNG)
 
 #### 3. 캐릭터/장비 정보 화면(2분할)
 ![캐릭터 정보 화면](https://github.com/2016180022/SGP/blob/master/dCharInfo.png?raw=true)  
 화면 상단: 캐릭터/장비 정보 이미지 및 텍스트  
 화면 하단(좌우 스크롤): 캐릭터/장비 리스트, 돌아가기 버튼
+* 실제 구현 화면
+	* 캐릭터 정보 화면  
+		![인게임 화면](https://raw.githubusercontent.com/2016180022/SGP/8ab98c1bebf19150f330a754c533ec6db49941e3/img/CHARSTATE.PNG)
+	* 장비 정보 화면
+		![인게임 화면](https://raw.githubusercontent.com/2016180022/SGP/8ab98c1bebf19150f330a754c533ec6db49941e3/img/EQUSTATE.PNG)
 
 #### 4. 장비 조합 화면(2분할)
 ![장비 조합 화면](https://github.com/2016180022/SGP/blob/master/dEquipSynth.png?raw=true)  
@@ -79,9 +89,9 @@
 
 ### 2.3 화면 상세 설정
 * 각 화면은 상단 뷰 + 하단 뷰의 조합으로 구성됨.
-* 상단 뷰는 각각 GAME, CHAR, EQU STATE로 구분되며 각각의 STATE마다 내용을 다르게 표시함.
+* 상단 뷰는 각각 GAME, CHAR STATE로 구분되며 각각의 STATE마다 내용을 다르게 표시함.
 * 하단 뷰는 각각 CHAR, EQU STATE로 구분되며 클릭했을 경우, 상단의 STATE마다 다른 기능을 가짐.
-* 게임 플레이 화면의 경우 GAME+CHAR의 조합으로, 캐릭터 정보 화면의 경우 CHAR+CHAR의 조합으로, 장비 정보 화면의 경우 EQU+EQU의 조합으로 구성됨.
+* 게임 플레이 화면의 경우 GAME+CHAR의 조합으로, 캐릭터 정보 화면의 경우 CHAR+CHAR의 조합으로, 장비 정보 화면의 경우 CHAR+EQU의 조합으로 구성됨.
 
 ## 3. 예상 게임 실행 흐름
 ![DND 플로우차트](https://github.com/2016180022/SGP/blob/master/dndFlowchart.png?raw=true)  
@@ -103,7 +113,16 @@
 |9주차|디버깅 및 테스트|
 
 * 개발 일정 수정사항
-	(22.04.18) 장비 조합 및 뽑기 기능 추가 구현 사항으로 이전
+	(22.04.18) 장비 조합 및 뽑기 기능 추가 구현 사항으로 이전  
+	
+### 4.1 일정 진행 상황
+현재 4주차 까지의 진행 내용 중, 3주차까지 구현 완료.  
+* 보완해야 할 사항
+	1. 메인 화면에서 다른 화면으로 넘어갈 때 데이터(View의 STATE 결정)를 전달해주는 기능
+	2. 하단 뷰의 표시 이미지가 많아질 경우, 좌/우로 스크롤 할 수 있는 기능
+	3. 1주 늦어진 게임 플레이 구현 작업
+
+### 4.2 Git commit 현황
 
 ## 5. 추가 개발 사항
 
