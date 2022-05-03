@@ -23,10 +23,10 @@
   
 게임의 장르: 타워 디펜스 
 
-![동일한 타워 디펜스 장르 게임](https://github.com/2016180022/SGP/blob/master/tdgame1.jpg?raw=true)  
+![동일한 타워 디펜스 장르 게임](https://github.com/2016180022/SGP/blob/master/img/tdgame1.jpg?raw=true)  
 [킹덤 러쉬: 인게임 이미지]
 
-![동일한 타워 디펜스 장르 게임2](https://github.com/2016180022/SGP/blob/master/tdgame2.jpg?raw=true)  
+![동일한 타워 디펜스 장르 게임2](https://github.com/2016180022/SGP/blob/master/img/tdgame2.jpg?raw=true)  
 [명일방주: 인게임 이미지]
 
 게임의 개요: 자신이 배치한 타워형의 오브젝트로 일정한 주기/라운드로 걸어오는 적들을 막아내는 게임  
@@ -52,37 +52,38 @@
 ### 2.2 주요 화면 기능 및 객체 구성
 
 #### 1. 메인 화면
-![메인 화면](https://github.com/2016180022/SGP/blob/master/dMain.png?raw=true)  
+![메인 화면](https://github.com/2016180022/SGP/blob/master/img/dMain.png?raw=true)  
 게임 타이틀 이미지, 게임 시작 버튼, 캐릭터 정보 버튼, 장비 관리 버튼, 게임 종료 버튼
 **게임을 시작하면 가장 먼저 출력하는 초기 화면**
 * 해결해야 할 사항
 	Activity에서 Custum View 자체로 데이터를 넘겨주는 방법에 대하여 해결 필요
 
 #### 2. 게임 플레이 화면(2분할)
-![플레이 화면](https://github.com/2016180022/SGP/blob/master/dPlay.png?raw=true)  
+![플레이 화면](https://github.com/2016180022/SGP/blob/master/img/dPlay.png?raw=true)  
 화면 상단: 백그라운드 맵, 몬스터 객체, 플레이어 유닛 객체  
 화면 하단(좌우 스크롤): 캐릭터 리스트, 일시정지 버튼  
-* 실제 구현 화면
-	![인게임 화면](https://raw.githubusercontent.com/2016180022/SGP/8ab98c1bebf19150f330a754c533ec6db49941e3/img/GAMESTATE.PNG)
+* 실제 구현 화면  
+	![인게임 화면](https://raw.githubusercontent.com/2016180022/SGP/8ab98c1bebf19150f330a754c533ec6db49941e3/img/GAMESTATE.PNG)  
 
 #### 3. 캐릭터/장비 정보 화면(2분할)
-![캐릭터 정보 화면](https://github.com/2016180022/SGP/blob/master/dCharInfo.png?raw=true)  
+![캐릭터 정보 화면](https://github.com/2016180022/SGP/blob/master/img/dCharInfo.png?raw=true)  
 화면 상단: 캐릭터/장비 정보 이미지 및 텍스트  
 화면 하단(좌우 스크롤): 캐릭터/장비 리스트, 돌아가기 버튼
 * 실제 구현 화면
 	* 캐릭터 정보 화면  
 		![인게임 화면](https://raw.githubusercontent.com/2016180022/SGP/8ab98c1bebf19150f330a754c533ec6db49941e3/img/CHARSTATE.PNG)
-	* 장비 정보 화면
-		![인게임 화면](https://raw.githubusercontent.com/2016180022/SGP/8ab98c1bebf19150f330a754c533ec6db49941e3/img/EQUSTATE.PNG)
+	* 장비 정보 화면  
+		![인게임 화면](https://raw.githubusercontent.com/2016180022/SGP/8ab98c1bebf19150f330a754c533ec6db49941e3/img/EQUSTATE.PNG)  
+		* 기존의 장비 옵션을 출력하는 화면 대신, 캐릭터 정보 화면에서 장비를 클릭하면 하단 뷰에 출력하도록 변경(22.04.18 수정)
 
 #### 4. 장비 조합 화면(2분할)
-![장비 조합 화면](https://github.com/2016180022/SGP/blob/master/dEquipSynth.png?raw=true)  
+![장비 조합 화면](https://github.com/2016180022/SGP/blob/master/img/dEquipSynth.png?raw=true)  
 화면 상단: 조합할 장비/조합 결과 장비 이미지 및 텍스트  
 화면 하단(좌우 스크롤): 장비 리스트, 돌아가기 버튼
 * 수정: 조합 기능 추가 기능으로 이관
 
 #### 5. 장비 뽑기 화면(2분할)
-![장비 뽑기 화면](https://github.com/2016180022/SGP/blob/master/dEquipGacha.png?raw=true)  
+![장비 뽑기 화면](https://github.com/2016180022/SGP/blob/master/img/dEquipGacha.png?raw=true)  
 화면 상단: 뽑기 설명 텍스트 및 이미지, 뽑기 과정 및 결과 이미지  
 화면 하단(좌우 스크롤): 장비 리스트, 돌아가기 버튼
 * 수정: 뽑기 기능 추가 기능으로 이관
@@ -94,7 +95,7 @@
 * 게임 플레이 화면의 경우 GAME+CHAR의 조합으로, 캐릭터 정보 화면의 경우 CHAR+CHAR의 조합으로, 장비 정보 화면의 경우 CHAR+EQU의 조합으로 구성됨.
 
 ## 3. 예상 게임 실행 흐름
-![DND 플로우차트](https://github.com/2016180022/SGP/blob/master/dndFlowchart.png?raw=true)  
+![DND 플로우차트](https://github.com/2016180022/SGP/blob/master/img/dndFlowchart.png?raw=true)  
 - 메인 화면만 다른 액티비티를 사용, 나머지는 모두 동일한 액티비티에 STATE를 다르게 적용한 뷰를 이용하여 구현.
   
   
@@ -104,25 +105,39 @@
 |---|-----|
 |1주차|리소스 작업|
 |2주차|프레임워크 제작(메인, 게임 플레이, 일시정지)|
-|3주차|프레임워크 제작(캐릭터 및 장비 정보, 장비 조합)|
-|4주차|게임 플레이 구현|
+|3주차|프레임워크 제작(캐릭터 및 장비 정보)|
+|4주차|프레임워크 제작(공통)|
 |5주차|게임 플레이 구현|
 |6주차|게임 플레이 구현|
-|7주차|캐릭터 별 스킬 및 착용 장비 스탯에 적용|
-|8주차|장비 조합 및 뽑기 구현|
+|7주차|게임 플레이 구현|
+|8주차|캐릭터 별 스킬 및 착용 장비 스탯에 적용|
 |9주차|디버깅 및 테스트|
+|?주차|장비 조합 및 뽑기 구현|
 
 * 개발 일정 수정사항
 	(22.04.18) 장비 조합 및 뽑기 기능 추가 구현 사항으로 이전  
 	
 ### 4.1 일정 진행 상황
 현재 4주차 까지의 진행 내용 중, 3주차까지 구현 완료.  
+항목별 사항은 다음과 같음  
+리소스 작업(90%) - 각 직업별 이미지 이름 변경 필요  
+프레임워크 제작(90%) - 보완사항 1,2번 제외  
+게임 플레이 구현(0%) - 캐릭터 애니메이션, 전투 등과 같은 기능  
+스킬 및 장비 적용(0%)  
+
 * 보완해야 할 사항
 	1. 메인 화면에서 다른 화면으로 넘어갈 때 데이터(View의 STATE 결정)를 전달해주는 기능
 	2. 하단 뷰의 표시 이미지가 많아질 경우, 좌/우로 스크롤 할 수 있는 기능
 	3. 1주 늦어진 게임 플레이 구현 작업
 
 ### 4.2 Git commit 현황
+![커밋 현황](https://github.com/2016180022/SGP/blob/master/img/commits.PNG?raw=true)  
+|주차|커밋 횟수|
+|---|----|
+|1주차|2회|
+|2주차|4회|
+|3주차|3회|
+|4주차|6회|
 
 ## 5. 추가 개발 사항
 
