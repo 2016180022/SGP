@@ -17,7 +17,7 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
 public class BaseGame {
     protected static BaseGame singleton;
-    public float frameTime, elapsedTime;
+    protected float frameTime, elapsedTime;
 
     public static BaseGame getInstance() {
 //        if (singleton == null) {
@@ -54,7 +54,7 @@ public class BaseGame {
         elapsedTime += frameTime;
         for (ArrayList<GameObject> gameObjects : layers) {
             for (GameObject gobj : gameObjects) {
-                gobj.update();
+                gobj.update(frameTime);
             }
         }
     }
