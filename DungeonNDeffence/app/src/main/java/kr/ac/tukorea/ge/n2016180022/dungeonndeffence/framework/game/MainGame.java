@@ -20,7 +20,7 @@ public class MainGame extends BaseGame {
     public void init() {
         initLayers(Layer.COUNT.ordinal());
 
-//        add(Layer.player.ordinal(), new Sprite(Metrics.width / 2, Metrics.height / 2, 500, 500, R.mipmap.));
+        add(Layer.player.ordinal(), new Sprite(Metrics.width / 2, Metrics.height / 2, Metrics.width, Metrics.height, R.mipmap.tile_wisdom));
     }
 
 }
