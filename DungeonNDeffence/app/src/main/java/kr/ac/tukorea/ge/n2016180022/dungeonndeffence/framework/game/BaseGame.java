@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
+import android.view.View;
 
 
 import java.util.ArrayList;
@@ -111,7 +112,7 @@ public class BaseGame {
         return false;
     }
 
-        public ArrayList<GameObject> objectsAt(int layerIndex) {
+    public ArrayList<GameObject> objectsAt(int layerIndex) {
         return layers.get(layerIndex);
     }
 

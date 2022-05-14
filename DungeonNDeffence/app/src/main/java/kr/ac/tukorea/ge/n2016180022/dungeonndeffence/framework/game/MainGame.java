@@ -1,6 +1,9 @@
 package kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.game;
 
 import android.util.Log;
+import android.view.MotionEvent;
+
+import java.util.ArrayList;
 
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.R;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects.Sprite;
@@ -8,6 +11,9 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.res.Metrics;
 
 public class MainGame extends BaseGame {
     private static final String TAG = MainGame.class.getSimpleName();
+    private boolean onTouch;
+
+    private ArrayList<Boolean> isEmpty = new ArrayList<>();
 
     public static MainGame get() {
         if (singleton == null) {
@@ -17,6 +23,48 @@ public class MainGame extends BaseGame {
     }
     public enum Layer {
         bg, sd, COUNT
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+//        return super.onTouchEvent(event);
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_UP:
+                onTouch = !onTouch;
+//                Log.d(TAG, event.getX() + ", " + event.getY());
+                if (onTouch) setSD(event.getX(), event.getY(), Sd.Job.darktemplar);
+//                if (onTouch) Log.d(TAG, "now on Touch");
+                break;
+        }
+        return true;
+    }
+
+    public void setSD(float x, float y, Sd.Job jobName) {
+        boolean xDone = false, yDone = false;
+
+        int xIndex = (int) (x / block());
+        int yIndex = (int) (y / block());
+
+        if (1 < xIndex && xIndex < 10) xDone = true;
+        if (1 < yIndex && yIndex < 5) yDone = true;
+
+        if (xDone && yDone) {
+            int index = 8 * (4 - yIndex) + xIndex - 1;
+            if (isEmpty.get(index - 1)) {
+                add(Layer.sd.ordinal(), new Sd(jobName, sdPositionX(index), sdPositionY(index)));
+                Log.d(TAG, "Set Sd in " + index);
+            }
+            isEmpty.set(index - 1, false);
+        }
+    }
+
+    public void init() {
+        initLayers(Layer.COUNT.ordinal());
+
+        initList();
+
+        add(Layer.bg.ordinal(), new Sprite(Metrics.width / 2, Metrics.height / 2, Metrics.width, Metrics.height, R.mipmap.tile_wisdom));
+//        Log.d(TAG, "Screen Size Is " + Metrics.width + ", " + Metrics.height);
     }
 
     public float sdPositionX(int index) {
@@ -40,12 +88,8 @@ public class MainGame extends BaseGame {
         return Metrics.width / 12;
     }
 
-    public void init() {
-        initLayers(Layer.COUNT.ordinal());
-
-        add(Layer.bg.ordinal(), new Sprite(Metrics.width / 2, Metrics.height / 2, Metrics.width, Metrics.height, R.mipmap.tile_wisdom));
-        Log.d(TAG, "Screen Size Is " + Metrics.width + ", " + Metrics.height);
-        add(Layer.sd.ordinal(), new Sd(Sd.Job.darktemplar, sdPositionX(17), sdPositionY(17)));
+    private void initList() {
+        for (int i = 0; i < 24; i++) isEmpty.add(i, true);
     }
 
 }

@@ -25,8 +25,7 @@ public class Sd extends Sprite {
     };
 
     public Sd(Job jobName, float left, float top) {
-//        super(left + MainGame.get().size(sdWidth) / 2, top + MainGame.get().size(sdHeight) / 2, MainGame.get().size(sdWidth), MainGame.get().size(sdHeight), jobName.bitmapId());
         super(left + MainGame.get().size(1) / 2, top + MainGame.get().size(1) / 2, MainGame.get().size(1), MainGame.get().size(1),  jobName.bitmapId());
-        Log.d(TAG, "SD created in " + left + " ~ " + (left + MainGame.get().size(1) + ", " + top + " ~ " + (top + MainGame.get().size(1))));
+//        Log.d(TAG, "SD created in " + left + " ~ " + (left + MainGame.get().size(1) + ", " + top + " ~ " + (top + MainGame.get().size(1))));
     }
 }
