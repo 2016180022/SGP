@@ -12,8 +12,10 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.res.Metrics;
 public class MainGame extends BaseGame {
     private static final String TAG = MainGame.class.getSimpleName();
     private boolean onTouch;
+    private MobGenerater generater = new MobGenerater();
 
     private ArrayList<Boolean> isEmpty = new ArrayList<>();
+    public ArrayList<Mob> mobList = new ArrayList<>();
 
     public static MainGame get() {
         if (singleton == null) {
@@ -22,7 +24,7 @@ public class MainGame extends BaseGame {
         return (MainGame)singleton;
     }
     public enum Layer {
-        bg, sd, COUNT
+        bg, mob, sd, env, COUNT
     }
 
     @Override
@@ -52,7 +54,7 @@ public class MainGame extends BaseGame {
             int index = 8 * (4 - yIndex) + xIndex - 1;
             if (isEmpty.get(index - 1)) {
                 add(Layer.sd.ordinal(), new Sd(jobName, sdPositionX(index), sdPositionY(index)));
-                Log.d(TAG, "Set Sd in " + index);
+//                Log.d(TAG, "Set Sd in " + index);
             }
             isEmpty.set(index - 1, false);
         }
@@ -64,6 +66,9 @@ public class MainGame extends BaseGame {
         initList();
 
         add(Layer.bg.ordinal(), new Sprite(Metrics.width / 2, Metrics.height / 2, Metrics.width, Metrics.height, R.mipmap.tile_wisdom));
+        add(Layer.env.ordinal(), generater);
+        generater.startSpawn(1);
+        
 //        Log.d(TAG, "Screen Size Is " + Metrics.width + ", " + Metrics.height);
     }
 

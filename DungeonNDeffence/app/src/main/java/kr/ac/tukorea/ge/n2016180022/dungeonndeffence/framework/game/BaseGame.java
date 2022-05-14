@@ -15,7 +15,6 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.GameOb
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.Recyclable;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
-
 public class BaseGame {
     protected static BaseGame singleton;
     protected float frameTime, elapsedTime;
