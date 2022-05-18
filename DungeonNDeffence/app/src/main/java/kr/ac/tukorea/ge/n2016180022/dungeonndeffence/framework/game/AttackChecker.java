@@ -10,15 +10,12 @@ public class AttackChecker implements GameObject {
 
     private float sx, sy, mx, my;
     private int target;
+    private float elapsedTime;
 
     public AttackChecker() { }
 
     @Override
     public void update(float frameTime) {
-        checkAttack();
-    }
-
-    private void checkAttack() {
         MainGame game = MainGame.get();
         ArrayList<GameObject> mobs = game.objectsAt(MainGame.Layer.mob.ordinal());
         ArrayList<GameObject> sds = game.objectsAt(MainGame.Layer.sd.ordinal());
@@ -27,25 +24,25 @@ public class AttackChecker implements GameObject {
             sx = s.x;
             sy = s.y;
             for (GameObject mob : mobs) {
-                if (target >= s.targetCount) break;
+//                if (target >= s.targetCount) break;
                 Mob m = (Mob) mob;
                 mx = m.x;
                 my = m.y;
 
                 float dis = (float) Math.sqrt((sx - mx) * (sx - mx) + (sy - my) * (sy - my));
                 if (s.getRange() >= dis) {
-                    s.targetCount ++;
-//                    attack();
-                    game.remove(m);
-                    s.targetCount--;
+                    checkAttack(m, s, frameTime, game);
                 }
-
             }
         }
     }
 
-    private void attack(Mob m, Sd s, float frameTime) {
-
+    private void checkAttack(Mob m, Sd s, float frameTime, MainGame game) {
+        elapsedTime += frameTime;
+        if (elapsedTime > s.getAttackDelay()) {
+            game.remove(m);
+            elapsedTime = 0;
+        }
     }
 
     private void checkHP(Mob m, Sd s) {
