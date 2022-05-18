@@ -27,10 +27,14 @@ public class MobGenerater implements GameObject {
                 elapsedTime = 0;
             }
         }
-        if (this.wave >= WAVE_COUNT) spawning = false;
+        if (this.wave >= WAVE_COUNT) {
+            spawning = false;
+            checkMobCount();
+        }
     }
 
     public void startSpawn(int round) {
+        this.wave = 0;
         spawning = true;
         this.round = round;
     }
@@ -40,6 +44,14 @@ public class MobGenerater implements GameObject {
         MainGame.get().add(MainGame.Layer.mob.ordinal(), m);
         MainGame.get().mobList.add(m);
         this.wave++;
+    }
+
+    private void checkMobCount() {
+        int count = MainGame.get().mobList.size();
+        if (count == 0) {
+                this.round++;
+                startSpawn(this.round);
+        }
     }
 
     private float getHp() {
