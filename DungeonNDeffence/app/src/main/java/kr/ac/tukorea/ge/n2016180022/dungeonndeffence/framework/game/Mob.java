@@ -21,7 +21,6 @@ public class Mob extends Sprite {
     ArrayList<Position> desList = new ArrayList<>();
     protected int desIndex;
     public float hp;
-    public boolean onTarget;
 
     static Position des1 = new Position(0, 500);
     static Position des2 = new Position(1200, 500);
@@ -32,11 +31,15 @@ public class Mob extends Sprite {
     public Mob(Stage stage, float hp) {
 //        super(spawnX, spawnY, width, height, stage.bitmapId());
         super(0, 0, 1000, 1000, stage.bitmapId());
+        init();
+    }
+
+    private void init() {
         for (int i = 0; i < 4; i++) {
             desList.add(DES_POS[i]);
         }
+
         this.hp = hp;
-        onTarget = false;
     }
 
     @Override

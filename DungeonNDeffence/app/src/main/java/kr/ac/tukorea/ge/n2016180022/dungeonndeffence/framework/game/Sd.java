@@ -9,6 +9,7 @@ public class Sd extends Sprite {
 
     private static final String TAG = Sd.class.getSimpleName();
     private float range;
+    public int targetCount;
 
     public enum Job {
         darktemplar, demonslayer, vegabond;
@@ -16,7 +17,6 @@ public class Sd extends Sprite {
         int bitmapId() {
             return BITMAP_IDS[this.ordinal()];
         }
-
     }
 
     protected static int[] BITMAP_IDS = {
@@ -26,12 +26,17 @@ public class Sd extends Sprite {
     };
 
     public float getRange() {
-        range = 1000.0f;
         return range;
+    }
+
+    private void init() {
+        this.range = 1000.f;
+        this.targetCount = 1;
     }
 
     public Sd(Job jobName, float left, float top) {
         super(left + MainGame.get().size(1) / 2, top + MainGame.get().size(1) / 2, MainGame.get().size(1), MainGame.get().size(1),  jobName.bitmapId());
 //        Log.d(TAG, "SD created in " + left + " ~ " + (left + MainGame.get().size(1) + ", " + top + " ~ " + (top + MainGame.get().size(1))));
+        init();
     }
 }
