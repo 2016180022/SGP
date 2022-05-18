@@ -28,6 +28,8 @@ public class Sprite implements GameObject {
         bitmap = BitmapPool.get(bitmapResId);
     }
 
+    public Sprite() { }
+
 
     public void setDstRectWithRadius() {
         dstRect.set(x - radius, y - radius, x + radius, y + radius);
