@@ -1,6 +1,7 @@
 package kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.game;
 
 import android.graphics.Canvas;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ public class AttackChecker implements GameObject {
     private float sx, sy, mx, my;
     private int target;
     private float elapsedTime;
+    private String TAG = AttackChecker.class.getSimpleName();
 
     public AttackChecker() { }
 
@@ -40,13 +42,15 @@ public class AttackChecker implements GameObject {
     private void checkAttack(Mob m, Sd s, float frameTime, MainGame game) {
         elapsedTime += frameTime;
         if (elapsedTime > s.getAttackDelay()) {
-            game.remove(m);
+            checkHP(m, s, game);
             elapsedTime = 0;
         }
     }
 
-    private void checkHP(Mob m, Sd s) {
-
+    private void checkHP(Mob m, Sd s, MainGame game) {
+        m.hp = m.hp - s.getDamage();
+        Log.d(TAG, "HP: " + m.hp);
+        if (m.hp <= 0) game.remove(m);
     }
 
     @Override

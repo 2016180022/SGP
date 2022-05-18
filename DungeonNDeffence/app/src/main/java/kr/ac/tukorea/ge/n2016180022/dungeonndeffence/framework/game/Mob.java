@@ -31,14 +31,13 @@ public class Mob extends Sprite {
     public Mob(Stage stage, float hp) {
 //        super(spawnX, spawnY, width, height, stage.bitmapId());
         super(0, 0, 1000, 1000, stage.bitmapId());
-        init();
+        init(hp);
     }
 
-    private void init() {
+    private void init(float hp) {
         for (int i = 0; i < 4; i++) {
             desList.add(DES_POS[i]);
         }
-
         this.hp = hp;
     }
 

@@ -10,8 +10,8 @@ public class Sd extends Sprite {
     private static final String TAG = Sd.class.getSimpleName();
     private float range;
     private float attackDelay;
+    private float damage;
     public int targetCount;
-
 
     public enum Job {
         darktemplar, demonslayer, vegabond;
@@ -31,6 +31,7 @@ public class Sd extends Sprite {
         this.range = 1000.f;
         this.targetCount = 1;
         this.attackDelay = 2.0f;
+        this.damage = 10;
     }
 
     public float getRange() {
@@ -40,6 +41,9 @@ public class Sd extends Sprite {
     public float getAttackDelay() { return attackDelay;
     }
 
+    public float getDamage() {
+        return damage;
+    }
 
     public Sd(Job jobName, float left, float top) {
         super(left + MainGame.get().size(1) / 2, top + MainGame.get().size(1) / 2, MainGame.get().size(1), MainGame.get().size(1),  jobName.bitmapId());
