@@ -8,6 +8,7 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects.Sprite;
 public class Sd extends Sprite {
 
     private static final String TAG = Sd.class.getSimpleName();
+    private float range;
 
     public enum Job {
         darktemplar, demonslayer, vegabond;
@@ -23,6 +24,11 @@ public class Sd extends Sprite {
             R.mipmap.demonslayer,
             R.mipmap.vegabond
     };
+
+    public float getRange() {
+        range = 1000.0f;
+        return range;
+    }
 
     public Sd(Job jobName, float left, float top) {
         super(left + MainGame.get().size(1) / 2, top + MainGame.get().size(1) / 2, MainGame.get().size(1), MainGame.get().size(1),  jobName.bitmapId());

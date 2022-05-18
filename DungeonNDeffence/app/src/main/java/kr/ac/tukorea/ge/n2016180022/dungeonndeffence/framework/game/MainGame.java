@@ -69,6 +69,8 @@ public class MainGame extends BaseGame {
         add(Layer.env.ordinal(), generater);
         generater.startSpawn(1);
 
+        add(Layer.env.ordinal(), new AttackChecker());
+
 //        Log.d(TAG, "Screen Size Is " + Metrics.width + ", " + Metrics.height);
     }
 

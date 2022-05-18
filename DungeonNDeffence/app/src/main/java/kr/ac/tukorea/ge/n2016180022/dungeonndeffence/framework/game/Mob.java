@@ -21,6 +21,7 @@ public class Mob extends Sprite {
     ArrayList<Position> desList = new ArrayList<>();
     protected int desIndex;
     public float hp;
+    public boolean onTarget;
 
     static Position des1 = new Position(0, 500);
     static Position des2 = new Position(1200, 500);
@@ -35,6 +36,7 @@ public class Mob extends Sprite {
             desList.add(DES_POS[i]);
         }
         this.hp = hp;
+        onTarget = false;
     }
 
     @Override

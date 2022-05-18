@@ -11,7 +11,7 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.res.Metrics;
 public class Sprite implements GameObject {
     protected Bitmap bitmap;
     protected RectF dstRect = new RectF();
-    protected float x, y, radius;
+    public float x, y, radius;
     public Sprite(float x, float y, int radiusDimenResId, int bitmapResId) {
         this.x = x;
         this.y = y;
