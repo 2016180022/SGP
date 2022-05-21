@@ -2,7 +2,8 @@
 	{
 		"id": "0",
 		"name": "darktemplar",
-		"frame": 12,
+		"idleframe": 12,
+		"attackframe": 19,
 		"range": 1000
 	}
 

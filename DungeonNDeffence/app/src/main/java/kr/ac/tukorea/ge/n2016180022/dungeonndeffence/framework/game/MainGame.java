@@ -34,14 +34,14 @@ public class MainGame extends BaseGame {
             case MotionEvent.ACTION_UP:
                 onTouch = !onTouch;
 //                Log.d(TAG, event.getX() + ", " + event.getY());
-                if (onTouch) setSD(event.getX(), event.getY(), Sd.Job.darktemplar);
+                if (onTouch) setSD(event.getX(), event.getY(), 0);
 //                if (onTouch) Log.d(TAG, "now on Touch");
                 break;
         }
         return true;
     }
 
-    public void setSD(float x, float y, Sd.Job jobName) {
+    public void setSD(float x, float y, int sdIndex) {
         boolean xDone = false, yDone = false;
 
         int xIndex = (int) (x / block());
@@ -53,7 +53,7 @@ public class MainGame extends BaseGame {
         if (xDone && yDone) {
             int index = 8 * (4 - yIndex) + xIndex - 1;
             if (isEmpty.get(index - 1)) {
-                add(Layer.sd.ordinal(), new Sd(jobName, sdPositionX(index), sdPositionY(index)));
+                add(Layer.sd.ordinal(), new Sd(sdIndex, sdPositionX(index), sdPositionY(index)));
 //                Log.d(TAG, "Set Sd in " + index);
             }
             isEmpty.set(index - 1, false);
