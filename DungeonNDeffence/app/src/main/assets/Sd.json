@@ -4,28 +4,32 @@
 		"name": "darktemplar",
 		"idleframe": 12,
 		"attackframe": 19,
-		"range": 1000
+		"range": 1000,
+		"width": 161
 	},
 	{
 		"id": "1",
 		"name": "demonslayer",
 		"idleframe": 12,
 		"attackframe": 18,
-		"range": 1000
+		"range": 1000,
+		"width": 218
 	},
 	{
 		"id": "2",
 		"name": "swordmaster",
 		"idleframe": 16,
 		"attackframe": 26,
-		"range": 1000
+		"range": 1000,
+		"width": 153
 	},
 	{
 		"id": "3",
 		"name": "vegabond",
 		"idleframe": 16,
 		"attackframe": 19,
-		"range": 1000
+		"range": 1000,
+		"width": 177
 	},
 
 

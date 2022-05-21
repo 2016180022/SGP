@@ -24,9 +24,9 @@ public class AnimSprite extends Sprite {
     private int imageWidth;
     private int imageHeight;
 
-    private float w, h;
-    private int sdIndex;
     private Rect srcRect = new Rect();
+    public float w, h;
+    public float left, bottom;
 
     public AnimSprite(float x, float y, float w, float h, int bitmapResId, float framesPerSecond, int frameCount) {
         super(x, y, w, h, bitmapResId);
@@ -45,12 +45,7 @@ public class AnimSprite extends Sprite {
         createdOn = System.currentTimeMillis();
     }
 
-    public AnimSprite(float x, float y, float w, float h) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-    }
+    public AnimSprite() {}
 
     @Override
     public void update(float frameTime) {
@@ -58,6 +53,5 @@ public class AnimSprite extends Sprite {
 
     @Override
     public void draw(Canvas canvas) {
-        dstRect.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
     }
 }

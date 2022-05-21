@@ -4,7 +4,6 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.renderscript.ScriptGroup;
 import android.util.JsonReader;
 import android.util.Log;
 
@@ -20,6 +19,7 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
 public class Sd extends AnimSprite {
     private static final String TAG = Sd.class.getSimpleName();
+    private static final float SIZE_RATE = 4.0f;
     private float range;
     private float attackDelay;
     private float damage;
@@ -27,6 +27,8 @@ public class Sd extends AnimSprite {
     private long createdOn;
     private float framesPerSecond;
     public int targetCount;
+
+    private float beforeLeft, beforeBottom;
 
     //now drawing bitmap
     private ArrayList<Bitmap> drawBitmap = new ArrayList<>();
@@ -43,6 +45,7 @@ public class Sd extends AnimSprite {
         int idleFrame;
         int attackFrame;
         float range;
+        float width;
     }
 
     class StateBitmap {
@@ -50,8 +53,10 @@ public class Sd extends AnimSprite {
         ArrayList<Bitmap> attackBitmap = new ArrayList<>();
     }
 
-    public Sd(int sdIndex, float left, float top) {
-        super(left + MainGame.get().size(1) / 2, top + MainGame.get().size(1) / 2, MainGame.get().size(1), MainGame.get().size(1));
+    public Sd(int sdIndex, float left, float bottom) {
+        beforeLeft = left;
+        beforeBottom = bottom;
+
         createdOn = System.currentTimeMillis();
         init(sdIndex);
     }
@@ -63,22 +68,28 @@ public class Sd extends AnimSprite {
         float time = (now - createdOn) / 1000.0f;
         int index = Math.round(time * framesPerSecond) % frameCount;
         this.bitmap = drawBitmap.get(index);
+
+        this.w = bitmap.getWidth() * SIZE_RATE;
+        this.h = bitmap.getHeight() * SIZE_RATE;
+
+        dstRect.set(left, bottom - h, left + w, bottom);
         if (bitmap != null) canvas.drawBitmap(bitmap, null, dstRect, null);
     }
 
     private void init(int sdIndex) {
         if (sdInfos.size() == 0) {
             loadSdInfo();
-            Log.d(TAG, "loadSdInfo done in " + sdInfos.size() + " infos");
+//            Log.d(TAG, "loadSdInfo done in " + sdInfos.size() + " infos");
         }
 
         if (jobBitmap.size() == 0) {
             loadAllSdImage();
-            Log.d(TAG, "loadAllImage in " + jobBitmap.size() + "bitmaps");
+//            Log.d(TAG, "loadAllImage in " + jobBitmap.size() + "bitmaps");
         }
 
         this.info = sdInfos.get(sdIndex);
         this.range = info.range;
+//        Log.d(TAG, "index " + sdIndex + " resize to " + resizeBitmap(info.height));
         changeBitmap(1);
 
         //need to add data type in json file
@@ -87,6 +98,12 @@ public class Sd extends AnimSprite {
         this.damage = 10;
         this.framesPerSecond = 10;
 
+        resizeBitmap();
+    }
+
+    private void resizeBitmap() {
+        this.left = beforeLeft - MainGame.get().block() * 3 - 80 - (this.info.width - 161) * 3.5f;
+        this.bottom = beforeBottom + 160;
     }
 
     private void loadSdInfo() {
@@ -111,6 +128,8 @@ public class Sd extends AnimSprite {
                         sdinfo.attackFrame = reader.nextInt();
                     } else if (name.equals("range")) {
                         sdinfo.range = (float) reader.nextDouble();
+                    } else if (name.equals("width")) {
+                        sdinfo.width = (float) reader.nextDouble();
                     }
                 }
                 reader.endObject();

@@ -29,16 +29,15 @@ public class MainGame extends BaseGame {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-//        return super.onTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
                 onTouch = !onTouch;
 //                Log.d(TAG, event.getX() + ", " + event.getY());
                 if (onTouch){
                     setSD(event.getX(), event.getY(), 0);
-                    setSD(event.getX() + block(), event.getY(), 1);
-                    setSD(event.getX() + 2 * block(), event.getY(), 2);
-                    setSD(event.getX() + 3 * block(), event.getY(), 3);
+                    setSD(event.getX(), event.getY() + block(), 1);
+                    setSD(event.getX(), event.getY() - block(), 2);
+//                    setSD(event.getX(), event.getY() - 2 * block(), 3);
                 }
 //                if (onTouch) Log.d(TAG, "now on Touch");
                 break;
@@ -58,8 +57,8 @@ public class MainGame extends BaseGame {
         if (xDone && yDone) {
             int index = 8 * (4 - yIndex) + xIndex - 1;
             if (isEmpty.get(index - 1)) {
-                add(Layer.sd.ordinal(), new Sd(sdIndex, sdPositionX(index), sdPositionY(index)));
-//                Log.d(TAG, "Set Sd in " + index);
+                add(Layer.sd.ordinal(), new Sd(sdIndex, xIndex * block(), yIndex * block()));
+                Log.d(TAG, "Set Sd in " + x + ", " + y);
             }
             isEmpty.set(index - 1, false);
         }
@@ -77,19 +76,6 @@ public class MainGame extends BaseGame {
         add(Layer.env.ordinal(), new AttackChecker());
 
 //        Log.d(TAG, "Screen Size Is " + Metrics.width + ", " + Metrics.height);
-    }
-
-    public float sdPositionX(int index) {
-//        int column = index % R.dimen.tile_sd_column;
-        int column = (index - 1) % 8;
-        float fix = - block() / 4;
-        return (column - 1) * block() + fix;
-    }
-
-    public float sdPositionY(int index) {
-//        int row = (index - 1) / R.dimen.tile_sd_column;
-        int row = (index - 1) / 8;
-        return (-row + 1) * block();
     }
 
     public float size(float unit) {
