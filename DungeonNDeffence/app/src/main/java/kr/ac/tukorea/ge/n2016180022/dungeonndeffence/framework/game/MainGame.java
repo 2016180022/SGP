@@ -34,7 +34,12 @@ public class MainGame extends BaseGame {
             case MotionEvent.ACTION_UP:
                 onTouch = !onTouch;
 //                Log.d(TAG, event.getX() + ", " + event.getY());
-                if (onTouch) setSD(event.getX(), event.getY(), 0);
+                if (onTouch){
+                    setSD(event.getX(), event.getY(), 0);
+                    setSD(event.getX() + block(), event.getY(), 1);
+                    setSD(event.getX() + 2 * block(), event.getY(), 2);
+                    setSD(event.getX() + 3 * block(), event.getY(), 3);
+                }
 //                if (onTouch) Log.d(TAG, "now on Touch");
                 break;
         }

@@ -25,7 +25,7 @@ public class Sd extends AnimSprite {
     private float damage;
     private int frameCount;
     private long createdOn;
-    private float framesPerSecond = 5;
+    private float framesPerSecond;
     public int targetCount;
 
     //now drawing bitmap
@@ -79,12 +79,13 @@ public class Sd extends AnimSprite {
 
         this.info = sdInfos.get(sdIndex);
         this.range = info.range;
-        changeBitmap(0);
+        changeBitmap(1);
 
         //need to add data type in json file
         this.targetCount = 1;
         this.attackDelay = 2.0f;
         this.damage = 10;
+        this.framesPerSecond = 10;
 
     }
 
@@ -136,12 +137,12 @@ public class Sd extends AnimSprite {
                     Log.d(TAG, "load " + j + " idle state image");
                 }
                 //load attack bitmap
-//                for (int k = 0; k < info.attackFrame; k++) {
-//                    String filename = "img/" + info.id + "/attack/" + k + ".png";
-//                    InputStream is = assetManager.open(filename);
-//                    sBitmap.attackBitmap.add(BitmapFactory.decodeStream(is));
-//                    Log.d(TAG, "load " + k + " attack state image");
-//                }
+                for (int k = 0; k < info.attackFrame; k++) {
+                    String filename = "img/" + info.id + "/attack/" + k + ".png";
+                    InputStream is = assetManager.open(filename);
+                    sBitmap.attackBitmap.add(BitmapFactory.decodeStream(is));
+                    Log.d(TAG, "load " + k + " attack state image");
+                }
                 jobBitmap.add(sBitmap);
             }
         }
