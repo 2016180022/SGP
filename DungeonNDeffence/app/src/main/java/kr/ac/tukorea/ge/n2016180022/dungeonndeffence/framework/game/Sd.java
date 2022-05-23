@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.R;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects.AnimSprite;
-import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects.Sprite;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
 public class Sd extends AnimSprite {
