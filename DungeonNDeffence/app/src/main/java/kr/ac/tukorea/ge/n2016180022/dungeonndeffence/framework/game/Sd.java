@@ -163,17 +163,17 @@ public class Sd extends AnimSprite {
 
                 //load idle bitmap
                 for (int j = 0; j < info.idleFrame; j++) {
-                    String filename = "img/" + info.id + "/idle/" + j + ".png";
+                    String filename = "img/sd/" + info.id + "/idle/" + j + ".png";
                     InputStream is = assetManager.open(filename);
                     sBitmap.idleBitmap.add(BitmapFactory.decodeStream(is));
-                    Log.d(TAG, "load " + j + " idle state image");
+//                    Log.d(TAG, "load " + j + " idle state image");
                 }
                 //load attack bitmap
                 for (int k = 0; k < info.attackFrame; k++) {
-                    String filename = "img/" + info.id + "/attack/" + k + ".png";
+                    String filename = "img/sd/" + info.id + "/attack/" + k + ".png";
                     InputStream is = assetManager.open(filename);
                     sBitmap.attackBitmap.add(BitmapFactory.decodeStream(is));
-                    Log.d(TAG, "load " + k + " attack state image");
+//                    Log.d(TAG, "load " + k + " attack state image");
                 }
                 jobBitmap.add(sBitmap);
             }
