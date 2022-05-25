@@ -35,8 +35,8 @@ public class MainGame extends BaseGame {
 //                Log.d(TAG, event.getX() + ", " + event.getY());
                 if (onTouch){
                     setSD(event.getX(), event.getY(), 0);
-                    setSD(event.getX(), event.getY() + block(), 1);
-                    setSD(event.getX(), event.getY() - block(), 2);
+//                    setSD(event.getX(), event.getY() + block(), 1);
+//                    setSD(event.getX(), event.getY() - block(), 2);
 //                    setSD(event.getX(), event.getY() - 2 * block(), 3);
                 }
 //                if (onTouch) Log.d(TAG, "now on Touch");

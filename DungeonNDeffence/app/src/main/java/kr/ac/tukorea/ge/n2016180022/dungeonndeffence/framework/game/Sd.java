@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.R;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects.AnimSprite;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
@@ -20,12 +19,11 @@ public class Sd extends AnimSprite {
     private static final String TAG = Sd.class.getSimpleName();
     private static final float SIZE_RATE = 4.0f;
     private float range;
-    private float attackDelay;
     private float damage;
     private int frameCount;
-    private long createdOn;
     private float framesPerSecond;
-    public int targetCount;
+    private int bitmapIndex;
+    private float elapsedTime;
 
     private float beforeLeft, beforeBottom;
 
@@ -37,6 +35,13 @@ public class Sd extends AnimSprite {
     private static ArrayList<SdInfo> sdInfos = new ArrayList<>();
     //this sd info
     private SdInfo info;
+
+
+    enum State {
+        idle, attack
+    }
+
+    public State state = State.idle;
 
     private class SdInfo {
         int id;
@@ -56,17 +61,28 @@ public class Sd extends AnimSprite {
         beforeLeft = left;
         beforeBottom = bottom;
 
-        createdOn = System.currentTimeMillis();
         init(sdIndex);
+    }
+
+    @Override
+    public void update(float frameTime) {
+        elapsedTime += frameTime;
+        //1 bitmap frame
+        if (elapsedTime > 1 / framesPerSecond) {
+            this.bitmapIndex++;
+            elapsedTime = 0;
+        }
+
+        if (bitmapIndex >= frameCount) {
+            bitmapIndex = 0;
+            setState(State.idle);
+        }
     }
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        long now = System.currentTimeMillis();
-        float time = (now - createdOn) / 1000.0f;
-        int index = Math.round(time * framesPerSecond) % frameCount;
-        this.bitmap = drawBitmap.get(index);
+        this.bitmap = drawBitmap.get(bitmapIndex);
 
         this.w = bitmap.getWidth() * SIZE_RATE;
         this.h = bitmap.getHeight() * SIZE_RATE;
@@ -89,13 +105,11 @@ public class Sd extends AnimSprite {
         this.info = sdInfos.get(sdIndex);
         this.range = info.range;
 //        Log.d(TAG, "index " + sdIndex + " resize to " + resizeBitmap(info.height));
-        changeBitmap(1);
+        setState(State.idle);
 
         //need to add data type in json file
-        this.targetCount = 1;
-        this.attackDelay = 2.0f;
-        this.damage = 10;
-        this.framesPerSecond = 10;
+        this.damage = 100;
+        this.framesPerSecond = 30;
 
         resizeBitmap();
     }
@@ -170,25 +184,32 @@ public class Sd extends AnimSprite {
         }
     }
 
-    private void changeBitmap(int state) {
-        if (state == 0) {
+    private void changeBitmap(State state) {
+        if (state == State.idle) {
             this.frameCount = this.info.idleFrame;
             drawBitmap = jobBitmap.get(this.info.id).idleBitmap;
         }
-        else if (state == 1) {
+        else if (state == State.attack) {
             this.frameCount = this.info.attackFrame;
             drawBitmap = jobBitmap.get(this.info.id).attackBitmap;
         }
+    }
+
+    public void setState(State state) {
+        this.state = state;
+        changeBitmap(state);
+        bitmapIndex = 0;
+//        Log.d(TAG, "Set SD to " + state + "STATE");
+    }
+
+    public float attack(Mob m) {
+        setState(State.attack);
+        float hp = m.hp -= this.damage;
+        return hp;
     }
 
     public float getRange() {
         return range;
     }
 
-    public float getAttackDelay() { return attackDelay;
-    }
-
-    public float getDamage() {
-        return damage;
-    }
 }

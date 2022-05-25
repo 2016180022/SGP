@@ -4,7 +4,7 @@
 		"name": "darktemplar",
 		"idleframe": 12,
 		"attackframe": 19,
-		"range": 1000,
+		"range": 100,
 		"width": 161
 	},
 	{

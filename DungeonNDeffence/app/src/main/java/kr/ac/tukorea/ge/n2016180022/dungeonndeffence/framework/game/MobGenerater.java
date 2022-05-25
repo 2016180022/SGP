@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.GameObject;
 
 public class MobGenerater implements GameObject {
-    private static final float GEN_TIME = 2.0f;
+    private static final float GEN_TIME = 5.0f;
     private static final int WAVE_COUNT = 12;
     private final float genTime;
     private int wave;
