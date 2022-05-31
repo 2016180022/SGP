@@ -23,8 +23,8 @@ public class AttackChecker implements GameObject {
         ArrayList<GameObject> sds = game.objectsAt(MainGame.Layer.sd.ordinal());
         for (GameObject sd : sds) {
             Sd s = (Sd) sd;
-            sx = s.x;
-            sy = s.y;
+            sx = s.getX();
+            sy = s.bottom;
             if (s.state == Sd.State.idle) {
                 for (GameObject mob : mobs) {
                     Mob m = (Mob) mob;
@@ -32,12 +32,12 @@ public class AttackChecker implements GameObject {
                     my = m.y;
 
                     float dis = (float) Math.sqrt((sx - mx) * (sx - mx) + (sy - my) * (sy - my));
-//                    Log.d(TAG, "distance is " + dis);
+                    Log.d(TAG, "distance is " + dis);
                     if (s.getRange() >= dis) {
                         m.hp = s.attack(m);
                         if (m.hp < 0) {
-                            m.kill();
-                            game.mobList.remove(m);
+//                            m.kill();
+//                            game.mobList.remove(m);
                         }
                     }
                 }

@@ -213,4 +213,6 @@ public class Sd extends AnimSprite {
         return range;
     }
 
+    public float getX() {return this.beforeLeft + MainGame.get().block() * 3;}
+
 }
