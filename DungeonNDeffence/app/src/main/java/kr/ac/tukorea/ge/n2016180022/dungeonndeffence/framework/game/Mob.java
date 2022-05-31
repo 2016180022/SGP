@@ -16,11 +16,10 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
 public class Mob extends AnimSprite {
     private static final String TAG = Mob.class.getSimpleName();
-    private float elapsedTime;
-    private float spawnX, spawnY, width, height;
     private static float speed = 200;
     private static float drawTime = 0.4f;
     private static float block = MainGame.get().block();
+    private float elapsedTime;
     private int desIndex;
     public float hp;
 
@@ -31,10 +30,8 @@ public class Mob extends AnimSprite {
     private int idleFrameCount = 4;
 
     public enum Stage {
-//        gran01, gran02, evil01, evil02, wisdom01, wisdom02;
-        gran01, COUNT;
+        gran01, gran02, evil01, evil02, wisdom01, wisdom02, COUNT;
 
-//        int bitmapId() {return BITMAP_IDS[this.ordinal()];}
     };
 
     enum State {
@@ -57,8 +54,6 @@ public class Mob extends AnimSprite {
 
 
     public Mob(Stage stage, float hp) {
-//        super(spawnX, spawnY, width, height, stage.bitmapId());
-//        super(0, 0, 1000, 1000, stage.bitmapId());
         this.stage = stage;
         init(hp);
     }
@@ -132,7 +127,7 @@ public class Mob extends AnimSprite {
                     String filename = "img/mob/" + (i + 1) + "/dying/" + k + ".png";
                     InputStream is = assetManager.open(filename);
                     sBitmap.dyingBitmap.add(BitmapFactory.decodeStream(is));
-                    Log.d(TAG, "load " + k + " attack state image");
+                    Log.d(TAG, "load " + k + " dying state image");
                 }
                 stageBitmap.add(sBitmap);
             }
