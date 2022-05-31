@@ -6,12 +6,14 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.GameOb
 
 public class MobGenerater implements GameObject {
     private static final float GEN_TIME = 1.0f;
-    private static final int WAVE_COUNT = 1;
+    private static final int WAVE_COUNT = 3;
+    private static final int ROUND_COUNT = 1;
     private final float genTime;
     private int wave;
     private float elapsedTime;
     private boolean spawning;
 
+    public int stage;
     public int round;
 
     public MobGenerater() {
@@ -33,14 +35,15 @@ public class MobGenerater implements GameObject {
         }
     }
 
-    public void startSpawn(int round) {
+    public void startSpawn(int stage, int round) {
         this.wave = 0;
         spawning = true;
         this.round = round;
+        this.stage = stage;
     }
 
     private void spawn() {
-        Mob m = new Mob(Mob.Stage.wisdom02, getHp());
+        Mob m = new Mob(stage, getHp());
         MainGame.get().add(MainGame.Layer.mob.ordinal(), m);
         MainGame.get().mobList.add(m);
         this.wave++;
@@ -49,8 +52,14 @@ public class MobGenerater implements GameObject {
     private void checkMobCount() {
         int count = MainGame.get().mobList.size();
         if (count == 0) {
-                this.round++;
-                startSpawn(this.round);
+            if (this.stage == Mob.Stage.COUNT.ordinal() && this.round == ROUND_COUNT) return;
+            if (this.round == ROUND_COUNT) {
+                this.round = 1;
+                this.stage++;
+            }
+            else this.round++;
+
+            startSpawn(this.stage, this.round);
         }
     }
 

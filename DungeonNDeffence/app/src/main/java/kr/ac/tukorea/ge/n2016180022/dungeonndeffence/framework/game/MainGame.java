@@ -71,7 +71,7 @@ public class MainGame extends BaseGame {
 
         add(Layer.bg.ordinal(), new Sprite(Metrics.width / 2, Metrics.height / 2, Metrics.width, Metrics.height, R.mipmap.tile_wisdom));
         add(Layer.env.ordinal(), generater);
-        generater.startSpawn(1);
+        generater.startSpawn(1, 1);
 
         add(Layer.env.ordinal(), new AttackChecker());
 

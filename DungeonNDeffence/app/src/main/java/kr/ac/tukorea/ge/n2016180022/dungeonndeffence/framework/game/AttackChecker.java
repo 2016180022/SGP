@@ -35,7 +35,10 @@ public class AttackChecker implements GameObject {
 //                    Log.d(TAG, "distance is " + dis);
                     if (s.getRange() >= dis) {
                         m.hp = s.attack(m);
-                        if (m.hp < 0) m.kill();
+                        if (m.hp < 0) {
+                            m.kill();
+                            game.mobList.remove(m);
+                        }
                     }
                 }
             }

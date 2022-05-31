@@ -24,7 +24,7 @@ public class Mob extends AnimSprite {
     public float hp;
 
     private State state = State.idle;
-    private Stage stage;
+    private int stageIndex;
     private int bitmapIndex;
     private int dyingFrameCount = 8;
     private int idleFrameCount = 4;
@@ -53,8 +53,8 @@ public class Mob extends AnimSprite {
     static Position des4 = new Position((int)block, (int)block);
 
 
-    public Mob(Stage stage, float hp) {
-        this.stage = stage;
+    public Mob(int stageIndex, float hp) {
+        this.stageIndex = stageIndex - 1;
         init(hp);
     }
 
@@ -67,7 +67,7 @@ public class Mob extends AnimSprite {
         this.state = State.idle;
 
         if (stageBitmap.size() == 0) loadAllMobImage();
-        drawBitmap = stageBitmap.get(this.stage.ordinal()).idleBitmap;
+        drawBitmap = stageBitmap.get(stageIndex).idleBitmap;
 
         this.x = block;
         this.y = block;
@@ -142,7 +142,7 @@ public class Mob extends AnimSprite {
     public void kill() {
         if (this.state == State.idle) {
             this.state = State.dying;
-            drawBitmap = stageBitmap.get(this.stage.ordinal()).dyingBitmap;
+            drawBitmap = stageBitmap.get(stageIndex).dyingBitmap;
             bitmapIndex = 0;
         }
     }
