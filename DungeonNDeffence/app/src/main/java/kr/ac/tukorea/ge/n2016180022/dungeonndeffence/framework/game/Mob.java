@@ -4,33 +4,31 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.hardware.lights.LightState;
 import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.R;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects.AnimSprite;
-import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects.Sprite;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
 public class Mob extends AnimSprite {
     private static final String TAG = Mob.class.getSimpleName();
     private float elapsedTime;
     private float spawnX, spawnY, width, height;
-    private static float speed = 500;
+    private static float speed = 200;
+    private static float drawTime = 0.4f;
+    private static float block = MainGame.get().block();
     private int desIndex;
     public float hp;
 
     private State state = State.idle;
     private Stage stage;
     private int bitmapIndex;
-    private int framePerSecond = 2;
-    private int dyingFrameCount = 15;
-    private int idleFrameCount = 6;
+    private int dyingFrameCount = 8;
+    private int idleFrameCount = 4;
 
     public enum Stage {
 //        gran01, gran02, evil01, evil02, wisdom01, wisdom02;
@@ -52,10 +50,10 @@ public class Mob extends AnimSprite {
     }
 
     private ArrayList<Position> desList = new ArrayList<>();
-    static Position des1 = new Position(0, 500);
-    static Position des2 = new Position(1200, 500);
-    static Position des3 = new Position(1200, 0);
-    static Position des4 = new Position(0, 0);
+    static Position des1 = new Position((int)block, (int)(5 * block));
+    static Position des2 = new Position((int)(10 * block), (int)(5 * block));
+    static Position des3 = new Position((int)(10 * block), (int)block);
+    static Position des4 = new Position((int)block, (int)block);
 
 
     public Mob(Stage stage, float hp) {
@@ -76,10 +74,10 @@ public class Mob extends AnimSprite {
         if (stageBitmap.size() == 0) loadAllMobImage();
         drawBitmap = stageBitmap.get(this.stage.ordinal()).idleBitmap;
 
-        this.x = 0;
-        this.y = 0;
-        this.w = 1000;
-        this.h = 1000;
+        this.x = block;
+        this.y = block;
+        this.w = MainGame.get().block() * 2;
+        this.h = MainGame.get().block() * 2;
     }
 
     @Override
@@ -95,11 +93,12 @@ public class Mob extends AnimSprite {
     public void update(float frameTime) {
         if (state == State.dead) return;
         elapsedTime += frameTime;
-        if (elapsedTime > 1 / framePerSecond) {
+//        Log.d(TAG, "Mobs' frameTime is " + frameTime);
+        if (elapsedTime > drawTime) {
             bitmapIndex++;
             elapsedTime = 0;
         }
-        Log.d(TAG, "mob's bitmapIndex is " + bitmapIndex);
+//        Log.d(TAG, "mob's bitmapIndex is " + bitmapIndex);
 
         if (state == State.dying) {
             if (bitmapIndex >= dyingFrameCount - 1) state = State.dead;

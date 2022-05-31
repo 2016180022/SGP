@@ -18,10 +18,11 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 public class Sd extends AnimSprite {
     private static final String TAG = Sd.class.getSimpleName();
     private static final float SIZE_RATE = 4.0f;
+    private static final float drawTime = 0.1f;
     private float range;
     private float damage;
     private int frameCount;
-    private float framesPerSecond;
+
     private int bitmapIndex;
     private float elapsedTime;
 
@@ -67,8 +68,9 @@ public class Sd extends AnimSprite {
     @Override
     public void update(float frameTime) {
         elapsedTime += frameTime;
+//        Log.d(TAG, "ETime is " + elapsedTime);
         //1 bitmap frame
-        if (elapsedTime > 1 / framesPerSecond) {
+        if (elapsedTime > drawTime) {
             this.bitmapIndex++;
             elapsedTime = 0;
         }
@@ -109,7 +111,6 @@ public class Sd extends AnimSprite {
 
         //need to add data type in json file
         this.damage = 100;
-        this.framesPerSecond = 30;
 
         resizeBitmap();
     }
