@@ -71,8 +71,8 @@ public class Mob extends AnimSprite {
 
         this.x = block;
         this.y = block;
-        this.w = MainGame.get().block() * 2;
-        this.h = MainGame.get().block() * 2;
+        this.w = block;
+        this.h = block;
     }
 
     @Override
@@ -81,6 +81,7 @@ public class Mob extends AnimSprite {
         this.bitmap = drawBitmap.get(bitmapIndex);
 
         dstRect.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
+        dstRect.offset(block / 2, block / 2);
         if (bitmap != null) canvas.drawBitmap(bitmap, null, dstRect, null);
     }
 

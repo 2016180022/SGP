@@ -40,7 +40,7 @@ public class MobGenerater implements GameObject {
     }
 
     private void spawn() {
-        Mob m = new Mob(Mob.Stage.evil01, getHp());
+        Mob m = new Mob(Mob.Stage.wisdom02, getHp());
         MainGame.get().add(MainGame.Layer.mob.ordinal(), m);
         MainGame.get().mobList.add(m);
         this.wave++;
