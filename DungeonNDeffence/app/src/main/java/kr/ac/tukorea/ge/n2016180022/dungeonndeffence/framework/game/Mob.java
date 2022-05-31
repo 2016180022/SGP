@@ -82,6 +82,7 @@ public class Mob extends AnimSprite {
 
         dstRect.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
         dstRect.offset(block / 2, block / 2);
+
         if (bitmap != null) canvas.drawBitmap(bitmap, null, dstRect, null);
     }
 

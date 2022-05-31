@@ -31,6 +31,36 @@
 		"range": 1000,
 		"width": 177
 	},
-
-
+	{
+		"id": "4",
+		"name": "swordgod",
+		"idleframe": 8,
+		"attackframe": 25,
+		"range": 1000,
+		"width": 266
+	},
+	{
+		"id": "5",
+		"name": "bloodevil",
+		"idleframe": 12,
+		"attackframe": 32,
+		"range": 1000,
+		"width": 213
+	},
+	{
+		"id": "6",
+		"name": "darkload",
+		"idleframe": 14,
+		"attackframe": 40,
+		"range": 1000,
+		"width": 270
+	},
+	{
+		"id": "7",
+		"name": "indra",
+		"idleframe": 9,
+		"attackframe": 19,
+		"range": 1000,
+		"width": 171
+	}
 ]
