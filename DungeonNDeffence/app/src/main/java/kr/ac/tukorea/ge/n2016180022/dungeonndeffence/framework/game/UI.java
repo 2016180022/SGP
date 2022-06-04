@@ -12,7 +12,7 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.res.BitmapPool;
 
 public class UI implements GameObject {
     private float block = MainGame.get().block();
-    private int coin;
+    private static int coin;
     private float x, y, w, h;
     private Bitmap coinBitmap = BitmapPool.get(R.mipmap.coin);
     private Rect coinDstRect = new Rect();
@@ -20,12 +20,16 @@ public class UI implements GameObject {
 
     public UI(int coinAmount) {
         coin = coinAmount;
-        setCoin();
+        initCoin();
         coinTextPaint.setTextSize(block / 2);
         coinTextPaint.setColor(Color.WHITE);
     }
 
-    private void setCoin() {
+    public static void addCoin(int amount) {
+        coin += amount;
+    }
+
+    private void initCoin() {
         this.x = block * 10 + block / 2;
         this.y = block * 3 / 10;
         this.w = this.h = block / 2;
@@ -43,4 +47,6 @@ public class UI implements GameObject {
         canvas.drawBitmap(coinBitmap, null, coinDstRect, null);
         canvas.drawText("" + coin, block * 10 + block * 4 / 5, block / 2, coinTextPaint);
     }
+
+
 }

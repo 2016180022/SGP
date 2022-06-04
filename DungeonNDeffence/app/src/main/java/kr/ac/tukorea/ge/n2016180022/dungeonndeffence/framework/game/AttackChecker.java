@@ -23,9 +23,9 @@ public class AttackChecker implements GameObject {
         ArrayList<GameObject> sds = game.objectsAt(MainGame.Layer.sd.ordinal());
         for (GameObject sd : sds) {
             Sd s = (Sd) sd;
-            sx = s.getX();
-            sy = s.bottom;
             if (s.state == Sd.State.idle) {
+                sx = s.getX();
+                sy = s.bottom;
                 for (GameObject mob : mobs) {
                     Mob m = (Mob) mob;
                     mx = m.x;
@@ -38,14 +38,20 @@ public class AttackChecker implements GameObject {
                         if (m.hp < 0) {
                             m.kill();
                             game.mobList.remove(m);
+
                         }
+                        break;
                     }
                 }
             }
         }
         for (GameObject mob : mobs) {
             Mob m = (Mob)mob;
-            if (m.getState() == Mob.State.dead) game.remove(m);
+            if (m.getState() == Mob.State.dead) {
+                game.remove(m);
+                UI.addCoin(100);
+            }
+            m.targeted = false;
         }
     }
 
