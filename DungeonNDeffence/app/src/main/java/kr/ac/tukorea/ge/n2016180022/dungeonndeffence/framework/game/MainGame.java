@@ -15,6 +15,7 @@ public class MainGame extends BaseGame {
     private MobGenerater generater = new MobGenerater();
     private Sprite bgSprite;
     private int stageIndex;
+    private int coin;
 
     private ArrayList<Boolean> isEmpty = new ArrayList<>();
     public ArrayList<Mob> mobList = new ArrayList<>();
@@ -26,7 +27,7 @@ public class MainGame extends BaseGame {
         return (MainGame)singleton;
     }
     public enum Layer {
-        bg, mob, sd, env, COUNT
+        bg, mob, sd, ui, env, COUNT
     }
 
     public int RES_MAP[] = { R.mipmap.tile_town1, R.mipmap.tile_evildom, R.mipmap.tile_wisdom };
@@ -77,6 +78,10 @@ public class MainGame extends BaseGame {
         this.stageIndex = 1;
         setBG(stageIndex);
 
+        coin = 200;
+
+        add(Layer.ui.ordinal(), new UI(coin));
+
         add(Layer.env.ordinal(), generater);
         generater.startSpawn(1, 1);
 
@@ -92,10 +97,6 @@ public class MainGame extends BaseGame {
             add(Layer.bg.ordinal(), bgSprite);
         }
         else bgSprite.setBitmap(RES_MAP[stage]);
-    }
-
-    public float size(float unit) {
-        return unit * Metrics.height * 0.6f;
     }
 
     public float block() {

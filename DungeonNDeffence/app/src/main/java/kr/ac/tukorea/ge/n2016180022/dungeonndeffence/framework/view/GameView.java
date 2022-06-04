@@ -79,7 +79,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
     protected void onDraw(Canvas canvas) {
         BaseGame.getInstance().draw(canvas);
 
-        canvas.drawText("FPS:" + framesPerSecond, framesPerSecond * 10, 100, fpsPaint);
+//        canvas.drawText("FPS:" + framesPerSecond, framesPerSecond * 10, 100, fpsPaint);
         canvas.drawText("" + BaseGame.getInstance().objectCount(), 10, 100, fpsPaint);
     }
 
