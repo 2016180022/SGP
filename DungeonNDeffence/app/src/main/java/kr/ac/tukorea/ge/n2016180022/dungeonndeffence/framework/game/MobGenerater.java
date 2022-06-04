@@ -7,7 +7,7 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.GameOb
 public class MobGenerater implements GameObject {
     private static final float GEN_TIME = 1.0f;
     private static final int WAVE_COUNT = 1;
-    private static final int ROUND_COUNT = 5;
+    private static final int ROUND_COUNT = 2;
     private final float genTime;
     private int wave;
     private float elapsedTime;
@@ -31,7 +31,7 @@ public class MobGenerater implements GameObject {
         }
         if (this.wave >= WAVE_COUNT) {
             spawning = false;
-//            checkMobCount();
+            checkMobCount();
         }
     }
 
@@ -56,6 +56,7 @@ public class MobGenerater implements GameObject {
             if (this.round == ROUND_COUNT) {
                 this.round = 1;
                 this.stage++;
+                MainGame.get().setBG(this.stage);
             }
             else this.round++;
 

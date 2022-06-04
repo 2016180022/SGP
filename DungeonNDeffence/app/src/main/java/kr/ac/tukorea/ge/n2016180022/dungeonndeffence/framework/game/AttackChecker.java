@@ -36,8 +36,8 @@ public class AttackChecker implements GameObject {
                     if (s.getRange() >= dis) {
                         m.hp = s.attack(m);
                         if (m.hp < 0) {
-//                            m.kill();
-//                            game.mobList.remove(m);
+                            m.kill();
+                            game.mobList.remove(m);
                         }
                     }
                 }

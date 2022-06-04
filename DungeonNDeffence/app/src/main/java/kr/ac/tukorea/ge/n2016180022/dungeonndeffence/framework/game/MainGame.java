@@ -13,6 +13,8 @@ public class MainGame extends BaseGame {
     private static final String TAG = MainGame.class.getSimpleName();
     private boolean onTouch;
     private MobGenerater generater = new MobGenerater();
+    private Sprite bgSprite;
+    private int stageIndex;
 
     private ArrayList<Boolean> isEmpty = new ArrayList<>();
     public ArrayList<Mob> mobList = new ArrayList<>();
@@ -27,6 +29,8 @@ public class MainGame extends BaseGame {
         bg, mob, sd, env, COUNT
     }
 
+    public int RES_MAP[] = { R.mipmap.tile_town1, R.mipmap.tile_evildom, R.mipmap.tile_wisdom };
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -34,6 +38,7 @@ public class MainGame extends BaseGame {
                 onTouch = !onTouch;
 //                Log.d(TAG, event.getX() + ", " + event.getY());
                 if (onTouch){
+
                     setSD(event.getX(), event.getY(), 6);
 //                    setSD(event.getX(), event.getY() + block(), 7);
 //                    setSD(event.getX(), event.getY() + 2 * block(), 0);
@@ -69,13 +74,24 @@ public class MainGame extends BaseGame {
 
         initList();
 
-        add(Layer.bg.ordinal(), new Sprite(Metrics.width / 2, Metrics.height / 2, Metrics.width, Metrics.height, R.mipmap.tile_wisdom));
+        this.stageIndex = 1;
+        setBG(stageIndex);
+
         add(Layer.env.ordinal(), generater);
         generater.startSpawn(1, 1);
 
         add(Layer.env.ordinal(), new AttackChecker());
 
 //        Log.d(TAG, "Screen Size Is " + Metrics.width + ", " + Metrics.height);
+    }
+
+    public void setBG(int stageIndex) {
+        int stage = (stageIndex - 1) / 2;
+        if (bgSprite == null) {
+            bgSprite = new Sprite(Metrics.width / 2, Metrics.height / 2, Metrics.width, Metrics.height, RES_MAP[stage]);
+            add(Layer.bg.ordinal(), bgSprite);
+        }
+        else bgSprite.setBitmap(RES_MAP[stage]);
     }
 
     public float size(float unit) {
