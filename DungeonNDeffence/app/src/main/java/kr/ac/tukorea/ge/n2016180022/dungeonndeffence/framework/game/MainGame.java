@@ -63,7 +63,7 @@ public class MainGame extends BaseGame {
         if (xDone && yDone) {
             int index = 8 * (4 - yIndex) + xIndex - 1;
             if (isEmpty.get(index - 1)) {
-                add(Layer.sd.ordinal(), new Sd(sdIndex, xIndex * block(), yIndex * block()));
+                add(Layer.sd.ordinal(), new Sd(sdIndex, xIndex, yIndex));
                 Log.d(TAG, "Set Sd in " + x + ", " + y);
             }
             isEmpty.set(index - 1, false);

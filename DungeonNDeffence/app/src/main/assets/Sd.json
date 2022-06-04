@@ -12,7 +12,7 @@
 		"name": "demonslayer",
 		"idleframe": 12,
 		"attackframe": 18,
-		"range": 1000,
+		"range": 100,
 		"width": 218
 	},
 	{
@@ -20,7 +20,7 @@
 		"name": "swordmaster",
 		"idleframe": 16,
 		"attackframe": 26,
-		"range": 1000,
+		"range": 100,
 		"width": 153
 	},
 	{
@@ -28,7 +28,7 @@
 		"name": "vegabond",
 		"idleframe": 16,
 		"attackframe": 19,
-		"range": 1000,
+		"range": 100,
 		"width": 177
 	},
 	{
@@ -36,7 +36,7 @@
 		"name": "swordgod",
 		"idleframe": 8,
 		"attackframe": 25,
-		"range": 1000,
+		"range": 100,
 		"width": 266
 	},
 	{
@@ -44,7 +44,7 @@
 		"name": "bloodevil",
 		"idleframe": 12,
 		"attackframe": 32,
-		"range": 1000,
+		"range": 100,
 		"width": 213
 	},
 	{
@@ -52,7 +52,7 @@
 		"name": "darkload",
 		"idleframe": 14,
 		"attackframe": 40,
-		"range": 1000,
+		"range": 200,
 		"width": 270
 	},
 	{
@@ -60,7 +60,7 @@
 		"name": "indra",
 		"idleframe": 9,
 		"attackframe": 19,
-		"range": 1000,
+		"range": 100,
 		"width": 171
 	}
 ]

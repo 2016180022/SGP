@@ -19,6 +19,8 @@ public class Sd extends AnimSprite {
     private static final String TAG = Sd.class.getSimpleName();
     private static final float SIZE_RATE = 4.0f;
     private static final float drawTime = 0.1f;
+    private float block = MainGame.get().block();
+    private int xIndex, yIndex;
     private float range;
     private float damage;
     private int frameCount;
@@ -58,9 +60,12 @@ public class Sd extends AnimSprite {
         ArrayList<Bitmap> attackBitmap = new ArrayList<>();
     }
 
-    public Sd(int sdIndex, float left, float bottom) {
-        beforeLeft = left;
-        beforeBottom = bottom;
+    public Sd(int sdIndex, int xIndex, int yIndex) {
+        beforeLeft = xIndex * block;
+        beforeBottom = yIndex * block;
+
+        this.xIndex = xIndex;
+        this.yIndex = yIndex;
 
         init(sdIndex);
     }
@@ -213,6 +218,6 @@ public class Sd extends AnimSprite {
         return range;
     }
 
-    public float getX() {return this.beforeLeft + MainGame.get().block() * 3;}
+    public int getPos() {return 100 * yIndex + xIndex;}
 
 }

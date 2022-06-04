@@ -24,8 +24,9 @@ public class AttackChecker implements GameObject {
         for (GameObject sd : sds) {
             Sd s = (Sd) sd;
             if (s.state == Sd.State.idle) {
-                sx = s.getX();
-                sy = s.bottom;
+                int sdPos = s.getPos();
+                sy = (sdPos / 100) * game.block();
+                sx = (sdPos - (sdPos / 100) * 100) * game.block();
                 for (GameObject mob : mobs) {
                     Mob m = (Mob) mob;
                     mx = m.x;
@@ -51,7 +52,6 @@ public class AttackChecker implements GameObject {
                 game.remove(m);
                 UI.addCoin(100);
             }
-            m.targeted = false;
         }
     }
 
