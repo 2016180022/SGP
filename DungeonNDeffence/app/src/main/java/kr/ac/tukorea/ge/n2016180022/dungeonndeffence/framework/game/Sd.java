@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Random;
 
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects.AnimSprite;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
@@ -29,6 +30,8 @@ public class Sd extends AnimSprite {
     private float elapsedTime;
 
     private float beforeLeft, beforeBottom;
+
+    private Random randomIndex = new Random();
 
     //now drawing bitmap
     private ArrayList<Bitmap> drawBitmap = new ArrayList<>();
@@ -60,14 +63,14 @@ public class Sd extends AnimSprite {
         ArrayList<Bitmap> attackBitmap = new ArrayList<>();
     }
 
-    public Sd(int sdIndex, int xIndex, int yIndex) {
+    public Sd(int xIndex, int yIndex) {
         beforeLeft = xIndex * block;
         beforeBottom = yIndex * block;
 
         this.xIndex = xIndex;
         this.yIndex = yIndex;
 
-        init(sdIndex);
+        init();
     }
 
     @Override
@@ -98,7 +101,7 @@ public class Sd extends AnimSprite {
         if (bitmap != null) canvas.drawBitmap(bitmap, null, dstRect, null);
     }
 
-    private void init(int sdIndex) {
+    private void init() {
         if (sdInfos.size() == 0) {
             loadSdInfo();
 //            Log.d(TAG, "loadSdInfo done in " + sdInfos.size() + " infos");
@@ -108,6 +111,8 @@ public class Sd extends AnimSprite {
             loadAllSdImage();
 //            Log.d(TAG, "loadAllImage in " + jobBitmap.size() + "bitmaps");
         }
+
+        int sdIndex = randomIndex.nextInt(sdInfos.size());
 
         this.info = sdInfos.get(sdIndex);
         this.range = info.range;

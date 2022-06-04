@@ -40,7 +40,7 @@ public class MainGame extends BaseGame {
 //                Log.d(TAG, event.getX() + ", " + event.getY());
                 if (onTouch){
 
-                    setSD(event.getX(), event.getY(), 6);
+                    setSD(event.getX(), event.getY());
 //                    setSD(event.getX(), event.getY() + block(), 7);
 //                    setSD(event.getX(), event.getY() + 2 * block(), 0);
 //                    setSD(event.getX(), event.getY() + 2 * block(), 3);
@@ -51,7 +51,7 @@ public class MainGame extends BaseGame {
         return true;
     }
 
-    public void setSD(float x, float y, int sdIndex) {
+    public void setSD(float x, float y) {
         if (coin < 100) return;
         boolean xDone = false, yDone = false;
 
@@ -64,7 +64,7 @@ public class MainGame extends BaseGame {
         if (xDone && yDone) {
             int index = 8 * (4 - yIndex) + xIndex - 1;
             if (isEmpty.get(index - 1)) {
-                add(Layer.sd.ordinal(), new Sd(sdIndex, xIndex, yIndex));
+                add(Layer.sd.ordinal(), new Sd(xIndex, yIndex));
                 addCoin(-100);
 //                Log.d(TAG, "Set Sd in " + x + ", " + y);
             }
