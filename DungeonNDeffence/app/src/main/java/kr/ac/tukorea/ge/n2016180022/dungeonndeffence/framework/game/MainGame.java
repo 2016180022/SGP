@@ -52,6 +52,7 @@ public class MainGame extends BaseGame {
     }
 
     public void setSD(float x, float y, int sdIndex) {
+        if (coin < 100) return;
         boolean xDone = false, yDone = false;
 
         int xIndex = (int) (x / block());
@@ -64,7 +65,8 @@ public class MainGame extends BaseGame {
             int index = 8 * (4 - yIndex) + xIndex - 1;
             if (isEmpty.get(index - 1)) {
                 add(Layer.sd.ordinal(), new Sd(sdIndex, xIndex, yIndex));
-                Log.d(TAG, "Set Sd in " + x + ", " + y);
+                addCoin(-100);
+//                Log.d(TAG, "Set Sd in " + x + ", " + y);
             }
             isEmpty.set(index - 1, false);
         }
