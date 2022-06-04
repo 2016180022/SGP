@@ -107,4 +107,7 @@ public class MainGame extends BaseGame {
         for (int i = 0; i < 24; i++) isEmpty.add(i, true);
     }
 
+    public int getCoin() { return coin; }
+    public void addCoin(int amount) { this.coin += amount; }
+
 }

@@ -50,7 +50,7 @@ public class AttackChecker implements GameObject {
             Mob m = (Mob)mob;
             if (m.getState() == Mob.State.dead) {
                 game.remove(m);
-                UI.addCoin(100);
+                game.addCoin(100);
             }
         }
     }
