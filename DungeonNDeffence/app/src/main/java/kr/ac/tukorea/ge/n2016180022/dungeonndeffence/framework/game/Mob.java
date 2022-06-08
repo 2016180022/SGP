@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.R;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects.AnimSprite;
+import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.res.Metrics;
+import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.util.Gauge;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
 public class Mob extends AnimSprite {
@@ -21,7 +23,9 @@ public class Mob extends AnimSprite {
     private static float block = MainGame.get().block();
     private float elapsedTime;
     private int desIndex;
-    public float hp;
+    private Gauge gauge;
+    private float hp;
+    public float currentHp;
 
     private State state = State.idle;
     private int stageIndex;
@@ -63,7 +67,7 @@ public class Mob extends AnimSprite {
             desList.add(DES_POS[i]);
         }
 
-        this.hp = hp;
+        this.currentHp = this.hp = hp;
         this.state = State.idle;
 
         if (stageBitmap.size() == 0) loadAllMobImage();
@@ -73,6 +77,8 @@ public class Mob extends AnimSprite {
         this.y = block;
         this.w = block;
         this.h = block;
+
+        gauge = new Gauge(Metrics.size(R.dimen.mob_gauge_fgWidth), R.color.mob_gauge_fg, Metrics.size(R.dimen.mob_gauge_bgWidth), R.color.mob_gauge_bg, block / 2);
     }
 
     @Override
@@ -84,6 +90,9 @@ public class Mob extends AnimSprite {
         dstRect.offset(block / 2, block / 2);
 
         if (bitmap != null) canvas.drawBitmap(bitmap, null, dstRect, null);
+
+        gauge.setValue(currentHp / this.hp);
+        gauge.draw(canvas, this.x + block / 2, this.y);
     }
 
     @Override

@@ -35,8 +35,8 @@ public class AttackChecker implements GameObject {
                     float dis = (float) Math.sqrt((sx - mx) * (sx - mx) + (sy - my) * (sy - my));
                     Log.d(TAG, "distance is " + dis);
                     if (s.getRange() >= dis) {
-                        m.hp = s.attack(m);
-                        if (m.hp < 0) {
+                        m.currentHp = s.attack(m);
+                        if (m.currentHp < 0) {
                             m.kill();
                             game.mobList.remove(m);
 

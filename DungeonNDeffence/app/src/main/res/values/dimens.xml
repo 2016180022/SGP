@@ -3,4 +3,6 @@
     <dimen name="tile_column">12</dimen>
     <dimen name="tile_row">6</dimen>
     <dimen name="tile_sd_column">9</dimen>
+    <dimen name="mob_gauge_fgWidth">2dp</dimen>
+    <dimen name="mob_gauge_bgWidth">4dp</dimen>
 </resources>

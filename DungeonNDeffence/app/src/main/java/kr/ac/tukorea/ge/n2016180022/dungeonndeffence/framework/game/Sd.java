@@ -215,8 +215,7 @@ public class Sd extends AnimSprite {
 
     public float attack(Mob m) {
         setState(State.attack);
-        float hp = m.hp -= this.damage;
-        return hp;
+        return m.currentHp -= this.damage;
     }
 
     public float getRange() {
