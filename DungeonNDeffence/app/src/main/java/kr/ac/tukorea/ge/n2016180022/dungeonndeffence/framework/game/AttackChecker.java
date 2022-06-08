@@ -33,7 +33,7 @@ public class AttackChecker implements GameObject {
                     my = m.y;
 
                     float dis = (float) Math.sqrt((sx - mx) * (sx - mx) + (sy - my) * (sy - my));
-                    Log.d(TAG, "distance is " + dis);
+//                    Log.d(TAG, "distance is " + dis);
                     if (s.getRange() >= dis) {
                         m.currentHp = s.attack(m);
                         if (m.currentHp < 0) {

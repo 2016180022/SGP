@@ -13,6 +13,7 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.res.BitmapPool;
 public class UI implements GameObject {
     private float block = MainGame.get().block();
     private int coin;
+    private int stage, round;
     private float x, y, w, h;
     private Bitmap coinBitmap = BitmapPool.get(R.mipmap.coin);
     private Rect coinDstRect = new Rect();
@@ -35,13 +36,17 @@ public class UI implements GameObject {
     @Override
     public void update(float frameTime) {
         coin = MainGame.get().getCoin();
-
+        stage = MainGame.get().getStage();
+        round = MainGame.get().getRound();
     }
 
     @Override
     public void draw(Canvas canvas) {
         canvas.drawBitmap(coinBitmap, null, coinDstRect, null);
         canvas.drawText("" + coin, block * 10 + block * 4 / 5, block / 2, coinTextPaint);
+
+        canvas.drawText("STAGE: " + stage, 0, block, coinTextPaint);
+        canvas.drawText("ROUND: " + round, 0, block * 1.4f, coinTextPaint);
     }
 
 

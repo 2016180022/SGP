@@ -40,6 +40,8 @@ public class MobGenerater implements GameObject {
         spawning = true;
         this.round = round;
         this.stage = stage;
+        MainGame.get().setStage(stage);
+        MainGame.get().setRound(round);
     }
 
     private void spawn() {

@@ -16,6 +16,9 @@ public class MainGame extends BaseGame {
     private Sprite bgSprite;
     private int stageIndex;
     private int coin;
+    private int stage, round;
+
+    public UI ui;
 
     private ArrayList<Boolean> isEmpty = new ArrayList<>();
     public ArrayList<Mob> mobList = new ArrayList<>();
@@ -80,12 +83,13 @@ public class MainGame extends BaseGame {
         this.stageIndex = 1;
         setBG(stageIndex);
 
-        coin = 200;
+        stage = round = 1;
 
+        coin = 200;
         add(Layer.ui.ordinal(), new UI(coin));
 
         add(Layer.env.ordinal(), generater);
-        generater.startSpawn(1, 1);
+        generater.startSpawn(stage, round);
 
         add(Layer.env.ordinal(), new AttackChecker());
 
@@ -111,5 +115,10 @@ public class MainGame extends BaseGame {
 
     public int getCoin() { return coin; }
     public void addCoin(int amount) { this.coin += amount; }
+
+    public int getStage() {return this.stage;}
+    public int getRound() {return this.round;}
+    public void setStage(int stage) {this.stage = stage;}
+    public void setRound(int round) {this.round = round;}
 
 }
