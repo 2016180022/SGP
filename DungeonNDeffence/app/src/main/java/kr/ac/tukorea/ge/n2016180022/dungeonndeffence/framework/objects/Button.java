@@ -2,12 +2,14 @@ package kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects;
 
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.Touchable;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.res.BitmapPool;
 
 public class Button extends Sprite implements Touchable {
+    private static final String TAG = Button.class.getSimpleName();
     protected final Callback callback;
     private final Bitmap normalBitmap;
     private Bitmap pressedBitmap;
@@ -41,10 +43,12 @@ public class Button extends Sprite implements Touchable {
                 pressed = true;
                 bitmap = pressedBitmap;
                 callback.onTouch(Action.pressed);
+                Log.d(TAG, "on Pressed");
                 return true;
             case MotionEvent.ACTION_UP:
                 pressed = false;
                 bitmap = normalBitmap;
+                Log.d(TAG, "on Released");
                 return callback.onTouch(Action.released);
             case MotionEvent.ACTION_MOVE:
                 return pressed;

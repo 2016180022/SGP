@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.BoxCollidable;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.GameObject;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.Recyclable;
+import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.Touchable;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
 public class Scene {
@@ -158,6 +159,16 @@ public class Scene {
     }
 
     public boolean onTouchEvent(MotionEvent event) {
+        int touchLayer = getTouchLayerIndex();
+        if (touchLayer < 0) return false;
+        ArrayList<GameObject> gameObjects = layers.get(touchLayer);
+        for (GameObject gobj : gameObjects) {
+            if (!(gobj instanceof Touchable)) {
+                continue;
+            }
+            boolean processed = ((Touchable) gobj).onTouchEvent(event);
+            if (processed) return true;
+        }
         return false;
     }
 
