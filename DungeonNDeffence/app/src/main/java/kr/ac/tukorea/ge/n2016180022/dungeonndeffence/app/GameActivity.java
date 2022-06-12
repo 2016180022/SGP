@@ -16,10 +16,10 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        MainScene game = MainScene.get();
-//        Scene.push(game);
+        MainScene game = MainScene.get();
+        Scene.push(game);
 
-        Scene.push(PausedScene.get());
+//        Scene.push(PausedScene.get());
 
         setContentView(new GameView(this, null));
     }
@@ -41,5 +41,13 @@ public class GameActivity extends AppCompatActivity {
         GameView.view = null;
         Scene.clear();
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (GameView.view.onBackPressed()) {
+            return;
+        }
+        super.onBackPressed();
     }
 }

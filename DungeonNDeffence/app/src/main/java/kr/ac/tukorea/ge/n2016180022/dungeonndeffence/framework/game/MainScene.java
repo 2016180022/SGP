@@ -96,6 +96,16 @@ public class MainScene extends Scene {
 //        Log.d(TAG, "Screen Size Is " + Metrics.width + ", " + Metrics.height);
     }
 
+    @Override
+    public boolean handleBackKey() {
+        PausedScene scene = PausedScene.get();
+        if (scene.objectCount() == 0) {
+            scene.init();
+        }
+        push(scene);
+        return true;
+    }
+
     public void setBG(int stageIndex) {
         int stage = (stageIndex - 1) / 2;
         if (bgSprite == null) {

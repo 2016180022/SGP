@@ -95,4 +95,8 @@ public class GameView extends View implements Choreographer.FrameCallback {
             Log.d(TAG, "Resuming game");
         }
     }
+
+    public boolean onBackPressed() {
+        return Scene.getInstance().handleBackKey();
+    }
 }

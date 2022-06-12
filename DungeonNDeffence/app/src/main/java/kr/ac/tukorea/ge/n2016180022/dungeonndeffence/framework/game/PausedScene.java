@@ -45,4 +45,19 @@ public class PausedScene extends Scene {
             }
         }));
     }
+
+    @Override
+    protected int getTouchLayerIndex() {
+        return Layer.touchUi.ordinal();
+    }
+
+    @Override
+    public boolean isTransparent() {
+        return true;
+    }
+
+    @Override
+    public boolean handleBackKey() {
+        return true;
+    }
 }
