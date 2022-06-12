@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.game.BaseGame;
-import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.game.MainGame;
+import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.game.Scene;
+import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.game.MainScene;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
 
@@ -14,7 +14,10 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MainGame.get();
+
+        MainScene game = MainScene.get();
+        Scene.push(game);
+
         setContentView(new GameView(this, null));
     }
 
@@ -33,7 +36,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         GameView.view = null;
-        BaseGame.clear();
+        Scene.clear();
         super.onDestroy();
     }
 }

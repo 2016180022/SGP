@@ -1,6 +1,5 @@
 package kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.game;
 
-import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -9,8 +8,8 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.R;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects.Sprite;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.res.Metrics;
 
-public class MainGame extends BaseGame {
-    private static final String TAG = MainGame.class.getSimpleName();
+public class MainScene extends Scene {
+    private static final String TAG = MainScene.class.getSimpleName();
     private boolean onTouch;
     private MobGenerater generater = new MobGenerater();
     private Sprite bgSprite;
@@ -23,11 +22,12 @@ public class MainGame extends BaseGame {
     private ArrayList<Boolean> isEmpty = new ArrayList<>();
     public ArrayList<Mob> mobList = new ArrayList<>();
 
-    public static MainGame get() {
+    private static MainScene singleton;
+    public static MainScene get() {
         if (singleton == null) {
-            singleton = new MainGame();
+            singleton = new MainScene();
         }
-        return (MainGame)singleton;
+        return singleton;
     }
     public enum Layer {
         bg, mob, sd, ui, env, COUNT

@@ -40,25 +40,25 @@ public class MobGenerater implements GameObject {
         spawning = true;
         this.round = round;
         this.stage = stage;
-        MainGame.get().setStage(stage);
-        MainGame.get().setRound(round);
+        MainScene.get().setStage(stage);
+        MainScene.get().setRound(round);
     }
 
     private void spawn() {
         Mob m = new Mob(stage, getHp());
-        MainGame.get().add(MainGame.Layer.mob.ordinal(), m);
-        MainGame.get().mobList.add(m);
+        MainScene.get().add(MainScene.Layer.mob.ordinal(), m);
+        MainScene.get().mobList.add(m);
         this.wave++;
     }
 
     private void checkMobCount() {
-        int count = MainGame.get().mobList.size();
+        int count = MainScene.get().mobList.size();
         if (count == 0) {
             if (this.stage == Mob.Stage.COUNT.ordinal() && this.round == ROUND_COUNT) return;
             if (this.round == ROUND_COUNT) {
                 this.round = 1;
                 this.stage++;
-                MainGame.get().setBG(this.stage);
+                MainScene.get().setBG(this.stage);
             }
             else this.round++;
 

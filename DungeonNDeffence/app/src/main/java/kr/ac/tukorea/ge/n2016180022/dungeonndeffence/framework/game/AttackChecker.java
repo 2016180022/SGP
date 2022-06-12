@@ -1,7 +1,6 @@
 package kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.game;
 
 import android.graphics.Canvas;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -18,9 +17,9 @@ public class AttackChecker implements GameObject {
 
     @Override
     public void update(float frameTime) {
-        MainGame game = MainGame.get();
-        ArrayList<GameObject> mobs = game.objectsAt(MainGame.Layer.mob.ordinal());
-        ArrayList<GameObject> sds = game.objectsAt(MainGame.Layer.sd.ordinal());
+        MainScene game = MainScene.get();
+        ArrayList<GameObject> mobs = game.objectsAt(MainScene.Layer.mob.ordinal());
+        ArrayList<GameObject> sds = game.objectsAt(MainScene.Layer.sd.ordinal());
         for (GameObject sd : sds) {
             Sd s = (Sd) sd;
             if (s.state == Sd.State.idle) {

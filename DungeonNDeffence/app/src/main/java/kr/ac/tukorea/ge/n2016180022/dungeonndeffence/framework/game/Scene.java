@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
-import android.view.View;
 
 
 import java.util.ArrayList;
@@ -15,24 +14,59 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.GameOb
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.Recyclable;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
-public class BaseGame {
-    protected static BaseGame singleton;
+public class Scene {
     protected float frameTime, elapsedTime;
 
-    public static BaseGame getInstance() {
-//        if (singleton == null) {
-//            singleton = new BaseGame();
-//        }
-        return singleton;
+    public static Scene getInstance() {
+        int lastIndex = sceneStack.size() - 1;
+        if (lastIndex < 0) return null;
+        return sceneStack.get(lastIndex);
     }
 
     public static void clear() {
-        singleton = null;
+        sceneStack.clear();
     }
 
     protected ArrayList<ArrayList<GameObject>> layers;
     protected Paint collisionPaint;
     protected boolean showsBoxCollidables;
+
+    protected static ArrayList<Scene> sceneStack = new ArrayList<>();
+
+    public static void start(Scene scene) {
+        int lastIndex = sceneStack.size() - 1;
+        if (lastIndex >= 0) {
+            Scene top = sceneStack.remove(lastIndex);
+            top.end();
+            sceneStack.set(lastIndex, scene);
+        }
+        else {
+            sceneStack.add(scene);
+        }
+        scene.start();
+    }
+
+    public static void push(Scene scene) {
+        int lastIndex = sceneStack.size() - 1;
+        if (lastIndex >= 0) {
+            Scene top = sceneStack.get(lastIndex);
+            top.pause();
+        }
+        sceneStack.add(scene);
+        scene.start();
+    }
+    public static void popScene() {
+        int lastIndex = sceneStack.size() - 1;
+        if (lastIndex >= 0) {
+            Scene top = sceneStack.remove(lastIndex);
+            top.end();
+        }
+        lastIndex--;
+        if (lastIndex >= 0) {
+            Scene top = sceneStack.get(lastIndex);
+            top.resume();
+        }
+    }
 
     public void init() {
         collisionPaint = new Paint();
@@ -41,6 +75,11 @@ public class BaseGame {
 
         elapsedTime = 0;
     }
+
+    public void start(){}
+    public void pause(){}
+    public void resume(){}
+    public void end(){}
 
     protected void initLayers(int count) {
         layers = new ArrayList<>();

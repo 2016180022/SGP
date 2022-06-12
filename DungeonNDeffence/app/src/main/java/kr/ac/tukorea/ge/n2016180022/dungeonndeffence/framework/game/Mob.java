@@ -20,7 +20,7 @@ public class Mob extends AnimSprite {
     private static final String TAG = Mob.class.getSimpleName();
     private static float speed = 200;
     private static float drawTime = 0.4f;
-    private static float block = MainGame.get().block();
+    private static float block = MainScene.get().block();
     private float elapsedTime;
     private int desIndex;
     private Gauge gauge;

@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.JsonReader;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +19,7 @@ public class Sd extends AnimSprite {
     private static final String TAG = Sd.class.getSimpleName();
     private static final float SIZE_RATE = 4.0f;
     private static final float drawTime = 0.1f;
-    private float block = MainGame.get().block();
+    private float block = MainScene.get().block();
     private int xIndex, yIndex;
     private float range;
     private float damage;
@@ -126,7 +125,7 @@ public class Sd extends AnimSprite {
     }
 
     private void resizeBitmap() {
-        this.left = beforeLeft - MainGame.get().block() * 3 - 80 - (this.info.width - 161) * 3.5f;
+        this.left = beforeLeft - MainScene.get().block() * 3 - 80 - (this.info.width - 161) * 3.5f;
         this.bottom = beforeBottom + 160;
     }
 

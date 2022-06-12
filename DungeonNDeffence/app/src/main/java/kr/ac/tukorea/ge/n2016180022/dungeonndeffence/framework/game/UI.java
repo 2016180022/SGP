@@ -11,7 +11,7 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.GameOb
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.res.BitmapPool;
 
 public class UI implements GameObject {
-    private float block = MainGame.get().block();
+    private float block = MainScene.get().block();
     private int coin;
     private int stage, round;
     private float x, y, w, h;
@@ -35,9 +35,9 @@ public class UI implements GameObject {
 
     @Override
     public void update(float frameTime) {
-        coin = MainGame.get().getCoin();
-        stage = MainGame.get().getStage();
-        round = MainGame.get().getRound();
+        coin = MainScene.get().getCoin();
+        stage = MainScene.get().getStage();
+        round = MainScene.get().getRound();
     }
 
     @Override
