@@ -17,8 +17,6 @@ public class MainScene extends Scene {
     private int coin;
     private int stage, round;
 
-    public UI ui;
-
     private ArrayList<Boolean> isEmpty = new ArrayList<>();
     public ArrayList<Mob> mobList = new ArrayList<>();
 
@@ -106,9 +104,12 @@ public class MainScene extends Scene {
         int stage = (stageIndex - 1) / 2;
         if (bgSprite == null) {
             bgSprite = new Sprite(Metrics.width / 2, Metrics.height / 2, Metrics.width, Metrics.height, RES_MAP[stage]);
-            add(Layer.bg.ordinal(), bgSprite);
         }
-        else bgSprite.setBitmap(RES_MAP[stage]);
+        else {
+            remove(bgSprite);
+            bgSprite.setBitmap(RES_MAP[stage]);
+        }
+        add(Layer.bg.ordinal(), bgSprite);
     }
 
     public float block() {

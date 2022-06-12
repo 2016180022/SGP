@@ -19,8 +19,6 @@ public class GameActivity extends AppCompatActivity {
         MainScene game = MainScene.get();
         Scene.push(game);
 
-//        Scene.push(PausedScene.get());
-
         setContentView(new GameView(this, null));
     }
 

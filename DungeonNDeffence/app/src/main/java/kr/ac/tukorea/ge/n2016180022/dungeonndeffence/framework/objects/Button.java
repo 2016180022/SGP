@@ -43,12 +43,12 @@ public class Button extends Sprite implements Touchable {
                 pressed = true;
                 bitmap = pressedBitmap;
                 callback.onTouch(Action.pressed);
-                Log.d(TAG, "on Pressed");
+//                Log.d(TAG, "on Pressed");
                 return true;
             case MotionEvent.ACTION_UP:
                 pressed = false;
                 bitmap = normalBitmap;
-                Log.d(TAG, "on Released");
+//                Log.d(TAG, "on Released");
                 return callback.onTouch(Action.released);
             case MotionEvent.ACTION_MOVE:
                 return pressed;
