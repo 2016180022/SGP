@@ -1,9 +1,9 @@
 # Dungeon&Defence
 
 ## 발표 링크
-- 1. [1차 발표]()
-- 2. [2차 발표]()
-- 3. [최종 발표]()
+- 1. [1차 발표](https://youtu.be/xo-HHFi6liM)
+- 2. [2차 발표](https://youtu.be/xn7xGK9zvTA)
+- 3. [최종 발표](https://youtu.be/f7OcLtn7aEo)
 
 ## 목차
 - 1. 게임의 소개 
