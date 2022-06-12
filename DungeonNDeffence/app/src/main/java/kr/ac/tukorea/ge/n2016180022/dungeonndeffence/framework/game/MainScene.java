@@ -7,13 +7,12 @@ import java.util.ArrayList;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.R;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects.Sprite;
 import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.res.Metrics;
+import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
 public class MainScene extends Scene {
     private static final String TAG = MainScene.class.getSimpleName();
-    private boolean onTouch;
     private MobGenerater generater = new MobGenerater();
     private Sprite bgSprite;
-    private int stageIndex;
     private int coin;
     private int stage, round;
 
@@ -37,16 +36,8 @@ public class MainScene extends Scene {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
-                onTouch = !onTouch;
+                setSD(event.getX(), event.getY());
 //                Log.d(TAG, event.getX() + ", " + event.getY());
-                if (onTouch){
-
-                    setSD(event.getX(), event.getY());
-//                    setSD(event.getX(), event.getY() + block(), 7);
-//                    setSD(event.getX(), event.getY() + 2 * block(), 0);
-//                    setSD(event.getX(), event.getY() + 2 * block(), 3);
-                }
-//                if (onTouch) Log.d(TAG, "now on Touch");
                 break;
         }
         return true;
@@ -78,10 +69,10 @@ public class MainScene extends Scene {
 
         initList();
 
-        this.stageIndex = 1;
-        setBG(stageIndex);
+        this.stage = 1;
+        setBG(stage);
 
-        stage = round = 1;
+        round = 1;
 
         coin = 200;
         add(Layer.ui.ordinal(), new UI(coin));

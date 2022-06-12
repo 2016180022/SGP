@@ -1,18 +1,8 @@
 package kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.objects;
 
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.util.Log;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-
-import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.game.Sd;
-import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.view.GameView;
 
 public class AnimSprite extends Sprite {
     private String TAG = AnimSprite.class.getSimpleName();

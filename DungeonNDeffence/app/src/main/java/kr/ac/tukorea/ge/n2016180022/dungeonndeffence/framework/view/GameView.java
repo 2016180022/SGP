@@ -82,7 +82,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
         Scene.getInstance().draw(canvas);
 
 //        canvas.drawText("FPS:" + framesPerSecond, framesPerSecond * 10, 100, fpsPaint);
-        canvas.drawText("" + Scene.getInstance().objectCount(), 10, 100, fpsPaint);
+//        canvas.drawText("" + Scene.getInstance().objectCount(), 10, 100, fpsPaint);
     }
 
     public void pauseGame() {

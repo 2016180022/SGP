@@ -45,8 +45,8 @@ public class UI implements GameObject {
         canvas.drawBitmap(coinBitmap, null, coinDstRect, null);
         canvas.drawText("" + coin, block * 10 + block * 4 / 5, block / 2, coinTextPaint);
 
-        canvas.drawText("STAGE: " + stage, 0, block, coinTextPaint);
-        canvas.drawText("ROUND: " + round, 0, block * 1.4f, coinTextPaint);
+        canvas.drawText("STAGE: " + stage, 0, block * 0.4f, coinTextPaint);
+        canvas.drawText("ROUND: " + round, 0, block * 0.8f, coinTextPaint);
     }
 
 

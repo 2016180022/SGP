@@ -159,11 +159,6 @@ public class Mob extends AnimSprite {
 
     public State getState() {return this.state;}
 
-
-    protected static int[] BITMAP_IDS = {
-            R.mipmap.mob
-    };
-
     protected static Position[] DES_POS = {
             des1, des2, des3, des4
     };

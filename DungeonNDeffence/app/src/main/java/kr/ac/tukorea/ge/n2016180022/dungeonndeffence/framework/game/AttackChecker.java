@@ -9,8 +9,6 @@ import kr.ac.tukorea.ge.n2016180022.dungeonndeffence.framework.interfaces.GameOb
 public class AttackChecker implements GameObject {
 
     private float sx, sy, mx, my;
-    private int target;
-    private float elapsedTime;
     private String TAG = AttackChecker.class.getSimpleName();
 
     public AttackChecker() { }
@@ -49,7 +47,7 @@ public class AttackChecker implements GameObject {
             Mob m = (Mob)mob;
             if (m.getState() == Mob.State.dead) {
                 game.remove(m);
-                game.addCoin(100);
+                game.addCoin(50);
             }
         }
     }

@@ -67,7 +67,7 @@ public class MobGenerater implements GameObject {
     }
 
     private float getHp() {
-        float hp = 100 + round * 8f;
+        float hp = 100f * stage + 50f * round;
         return hp;
     }
 
